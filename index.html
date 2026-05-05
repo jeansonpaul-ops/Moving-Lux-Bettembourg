@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Déménagement · Gare → Bettembourg</title>
-<meta name="description" content="Planificateur de déménagement personnel : checklist, inventaire des cartons, contacts utiles au Luxembourg." />
-<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#14130F" media="(prefers-color-scheme: dark)" />
+<meta name="description" content="Planificateur de déménagement Paul & Johanna : checklist, cartons, scan QR, contacts utiles au Luxembourg." />
+<meta name="theme-color" content="#F5F1EA" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1A1814" media="(prefers-color-scheme: dark)" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Déménagement" />
@@ -15,405 +15,555 @@
 <link rel="apple-touch-icon" href="icon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Geist:wght@300..600&family=Geist+Mono:wght@400..500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
 <style>
 :root {
-  --bg: #FAF7F2; --bg-2: #F2EDE5; --bg-3: #E8E2D5;
-  --ink: #1A1814; --ink-2: #5C5851; --ink-3: #908B82;
-  --line: #DDD7CB; --line-strong: #BFB8AB;
-  --accent: #1F3A93; --accent-2: #2D4FB3;
-  --coral: #C2502A; --coral-bg: #FAEEDA;
-  --green: #2D6B3A; --green-bg: #E1F0DD;
-  --amber: #8C5A0A; --amber-bg: #FBEED1;
-  --purple: #4F44A3; --purple-bg: #ECE9F9;
-  --paul: #1F3A93; --paul-bg: #DCE3F5;
-  --johanna: #B53389; --johanna-bg: #F8DCEE;
-  --sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --mono: 'Geist Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
-  --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
+  /* Soft, harmonious palette — earthy/botanical */
+  --bg: #FFFCF7;
+  --bg-soft: #F5F1EA;
+  --bg-card: #FFFCF7;
+  --bg-deep: #E8E2D4;
+  --ink: #2D2A24;
+  --ink-2: #6B6359;
+  --ink-3: #8A8378;
+  --ink-4: #A8A095;
+  --line: #E8E2D4;
+  --line-strong: #C4BCAC;
+
+  --sage: #8FAB75;
+  --sage-bg: #E8EDDF;
+  --sage-ink: #5A6B45;
+  --sage-deep: #6B8E5A;
+
+  --paul: #6B8FB2;
+  --paul-bg: #E8EFF5;
+  --paul-ink: #2A4A6B;
+
+  --johanna: #C77B95;
+  --johanna-bg: #F5E6EB;
+  --johanna-ink: #6B2D45;
+
+  --amber: #E8B86A;
+  --amber-bg: #F5E6C8;
+  --amber-ink: #8C6515;
+  --amber-deep: #B8821D;
+
+  --lavender: #C4B5DC;
+  --lavender-bg: #EDE8F5;
+  --lavender-ink: #3F2D6B;
+
+  --mint: #B5D4C5;
+  --mint-bg: #E0EDE6;
+  --mint-ink: #2D5A3F;
+
+  --terracotta: #D89A7B;
+  --terracotta-bg: #F5E2D5;
+  --terracotta-ink: #8C4F2D;
+
+  --r-sm: 8px;
+  --r-md: 10px;
+  --r-lg: 14px;
+
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #14130F; --bg-2: #1F1D18; --bg-3: #2A2823;
-    --ink: #F5EDE0; --ink-2: #C4BEB2; --ink-3: #8C8678;
-    --line: #2E2C26; --line-strong: #4A463D;
-    --accent: #6E89E6; --accent-2: #8FA3EE;
-    --coral: #F0997B; --coral-bg: #3A2418;
-    --green: #6FB07F; --green-bg: #1B2E1F;
-    --amber: #E0AB55; --amber-bg: #3A2C12;
-    --purple: #9B92E0; --purple-bg: #1F1B33;
-    --paul: #7C9BE8; --paul-bg: #1A2240;
-    --johanna: #E298C7; --johanna-bg: #381A2A;
+    --bg: #1F1D18;
+    --bg-soft: #14130F;
+    --bg-card: #2A2722;
+    --bg-deep: #38332D;
+    --ink: #F5EDE0;
+    --ink-2: #C4BEB2;
+    --ink-3: #8C8678;
+    --ink-4: #6B6358;
+    --line: #38332D;
+    --line-strong: #4F4A42;
+
+    --sage-bg: #2A3528;
+    --sage-ink: #C5D9B2;
+    --paul-bg: #1F2C3D;
+    --paul-ink: #B5CCE0;
+    --johanna-bg: #3D1F2A;
+    --johanna-ink: #E8B5C5;
+    --amber-bg: #3D2C12;
+    --amber-ink: #E5C98A;
+    --lavender-bg: #2A2438;
+    --lavender-ink: #D5C5E5;
+    --mint-bg: #1F2E26;
+    --mint-ink: #B5D9C5;
+    --terracotta-bg: #3D2418;
+    --terracotta-ink: #E8B59A;
   }
 }
 [data-theme="dark"] {
-  --bg: #14130F; --bg-2: #1F1D18; --bg-3: #2A2823;
-  --ink: #F5EDE0; --ink-2: #C4BEB2; --ink-3: #8C8678;
-  --line: #2E2C26; --line-strong: #4A463D;
-  --accent: #6E89E6; --accent-2: #8FA3EE;
-  --coral: #F0997B; --coral-bg: #3A2418;
-  --green: #6FB07F; --green-bg: #1B2E1F;
-  --amber: #E0AB55; --amber-bg: #3A2C12;
-  --purple: #9B92E0; --purple-bg: #1F1B33;
-  --paul: #7C9BE8; --paul-bg: #1A2240;
-  --johanna: #E298C7; --johanna-bg: #381A2A;
+  --bg: #1F1D18;
+  --bg-soft: #14130F;
+  --bg-card: #2A2722;
+  --bg-deep: #38332D;
+  --ink: #F5EDE0;
+  --ink-2: #C4BEB2;
+  --ink-3: #8C8678;
+  --ink-4: #6B6358;
+  --line: #38332D;
+  --line-strong: #4F4A42;
+  --sage-bg: #2A3528;
+  --sage-ink: #C5D9B2;
+  --paul-bg: #1F2C3D;
+  --paul-ink: #B5CCE0;
+  --johanna-bg: #3D1F2A;
+  --johanna-ink: #E8B5C5;
+  --amber-bg: #3D2C12;
+  --amber-ink: #E5C98A;
+  --lavender-bg: #2A2438;
+  --lavender-ink: #D5C5E5;
+  --mint-bg: #1F2E26;
+  --mint-ink: #B5D9C5;
+  --terracotta-bg: #3D2418;
+  --terracotta-ink: #E8B59A;
 }
-* { box-sizing: border-box; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
   margin: 0; padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--sans);
-  font-size: 15px; line-height: 1.55;
-  font-feature-settings: 'tnum' 1, 'cv11' 1, 'ss01' 1;
+  font-family: var(--font);
+  font-size: 15px; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  background-image: radial-gradient(circle, var(--line) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: 0 0;
   min-height: 100vh; min-height: 100dvh;
 }
-.shell { max-width: 1080px; margin: 0 auto; padding: 28px clamp(16px,4vw,48px) 80px; }
-header {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 24px; margin-bottom: 28px;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 16px 24px; align-items: end;
+
+.shell { max-width: 760px; margin: 0 auto; padding: 20px clamp(14px, 4vw, 32px) 80px; }
+
+/* ===== HEADER CARD ===== */
+.header-card {
+  background: var(--bg-soft);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  margin-bottom: 14px;
 }
-.eyebrow {
-  font-family: var(--mono); font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-3); margin: 0 0 10px;
+.header-top {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px;
 }
-.eyebrow .dot {
-  display: inline-block; width: 6px; height: 6px;
-  background: var(--coral); border-radius: 50%;
-  margin: 0 8px 1px; vertical-align: middle;
+.header-icon {
+  width: 44px; height: 44px;
+  background: var(--amber);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-h1 {
-  font-family: var(--serif); font-weight: 400;
-  font-variation-settings: 'opsz' 144, 'SOFT' 50;
-  font-size: clamp(30px, 5.2vw, 46px);
-  line-height: 1.05; margin: 0;
-  letter-spacing: -0.015em;
+.header-icon svg { width: 24px; height: 24px; }
+.header-text { flex: 1; min-width: 0; }
+.header-eyebrow {
+  font-size: 11px; color: var(--ink-2);
+  margin: 0; font-weight: 500; letter-spacing: 0.3px;
 }
-h1 em {
-  font-style: italic;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
-  color: var(--coral); font-weight: 300;
-  margin: 0 6px;
+.header-title {
+  font-size: 18px; font-weight: 500; margin: 0;
+  color: var(--ink);
+  letter-spacing: -0.01em;
 }
-.head-actions { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
-.date-block { display: flex; flex-direction: column; gap: 4px; }
-.date-block label {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-3);
+.header-date {
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 2px; flex-shrink: 0;
 }
-input[type="date"] {
-  font-family: var(--mono); font-size: 13px;
-  padding: 9px 12px; background: var(--bg-2);
-  border: 1px solid var(--line); border-radius: var(--r-sm);
-  color: var(--ink); color-scheme: light dark;
+.header-date label {
+  font-size: 11px; color: var(--ink-2); font-weight: 500;
 }
-input[type="date"]:focus { outline: none; border-color: var(--ink-2); }
-.icon-btn {
-  width: 40px; height: 40px;
+.header-date input {
+  font-size: 13px; font-weight: 500;
+  padding: 4px 8px; background: var(--bg);
+  border: 0.5px solid var(--line-strong);
   border-radius: var(--r-sm);
-  background: var(--bg-2); border: 1px solid var(--line);
-  color: var(--ink-2); cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: background .15s, border-color .15s, color .15s;
+  color: var(--ink); color-scheme: light dark;
+  font-family: inherit;
 }
-.icon-btn:hover { background: var(--bg-3); border-color: var(--line-strong); color: var(--ink); }
-.icon-btn svg { width: 18px; height: 18px; }
-.btn-install {
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
-  padding: 10px 16px; background: var(--accent);
-  color: #FAF7F2; border: none;
-  border-radius: var(--r-sm); cursor: pointer;
+.header-date input:focus { outline: none; border-color: var(--ink-2); }
+
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; margin-bottom: 14px;
+}
+.stat {
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  padding: 10px 8px; text-align: center;
+}
+.stat-lbl {
+  font-size: 10px; color: var(--ink-2);
+  margin-bottom: 4px; font-weight: 500;
   letter-spacing: 0.2px;
 }
-.btn-install:hover { background: var(--accent-2); }
-.btn-install.hidden { display: none; }
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
-.stat {
-  background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: var(--r-md); padding: 14px 16px;
-  position: relative; overflow: hidden;
+.stat-val {
+  font-size: 20px; font-weight: 500;
+  color: var(--ink); line-height: 1;
 }
-.stat::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 28px; height: 2px; background: var(--accent);
+.stat-val.urgent { color: var(--amber-deep); }
+
+.progress-meta {
+  display: flex; gap: 8px; align-items: center;
+  margin-bottom: 6px;
 }
-.stat .lbl {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-3); margin: 0 0 6px;
+.progress-lbl {
+  font-size: 11px; color: var(--ink-2); font-weight: 500;
 }
-.stat .val {
-  font-family: var(--serif); font-size: 30px; font-weight: 400;
-  font-variation-settings: 'opsz' 72;
-  color: var(--ink); margin: 0;
-  letter-spacing: -0.015em; line-height: 1;
+.progress-val {
+  font-size: 11px; color: var(--sage-deep);
+  margin-left: auto; font-weight: 500;
 }
-.stat.urgent::before { background: var(--coral); }
-.stat.urgent .val { color: var(--coral); font-style: italic; }
 .progress {
-  width: 100%; height: 4px;
-  background: var(--bg-3); border-radius: 999px;
-  overflow: hidden; margin-bottom: 32px;
+  background: var(--bg-deep);
+  border-radius: 999px;
+  height: 8px; overflow: hidden;
 }
 .progress > div {
-  height: 100%; background: var(--accent);
-  border-radius: 999px;
-  transition: width .4s cubic-bezier(.5,0,.2,1);
+  background: var(--sage);
+  height: 100%; border-radius: 999px;
+  transition: width .5s cubic-bezier(.5,0,.2,1);
 }
+
+/* ===== HEADER BUTTONS ===== */
+.head-actions {
+  display: flex; gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.btn-install, .icon-btn {
+  font-family: inherit; font-size: 13px;
+  font-weight: 500; padding: 8px 14px;
+  border-radius: var(--r-sm); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: all .15s;
+}
+.btn-install {
+  background: var(--amber); color: var(--amber-ink);
+  border: none;
+}
+.btn-install:hover { background: var(--amber-deep); color: white; }
+.btn-install.hidden { display: none; }
+.icon-btn {
+  background: var(--bg); border: 0.5px solid var(--line-strong);
+  color: var(--ink-2); padding: 8px 10px;
+  margin-left: auto;
+}
+.icon-btn:hover { background: var(--bg-soft); color: var(--ink); }
+.icon-btn svg { width: 16px; height: 16px; }
+
+/* ===== TABS ===== */
 .tabs {
-  display: flex; gap: 0;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 24px; overflow-x: auto;
+  display: flex; gap: 0; overflow-x: auto;
+  border-bottom: 0.5px solid var(--line);
+  margin-bottom: 18px;
   scrollbar-width: none;
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
-  font-family: var(--sans); font-size: 14px; font-weight: 500;
-  padding: 11px 20px 13px; background: transparent;
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  padding: 10px 16px; background: transparent;
   border: none; color: var(--ink-3); cursor: pointer;
   border-bottom: 2px solid transparent;
-  margin-bottom: -1px; white-space: nowrap;
+  margin-bottom: -0.5px; white-space: nowrap;
   transition: color .15s;
+  display: inline-flex; align-items: center; gap: 8px;
 }
 .tab:hover { color: var(--ink-2); }
-.tab.active { color: var(--ink); border-bottom-color: var(--ink); }
-.tab .badge {
-  display: inline-block; font-family: var(--mono);
-  font-size: 10px; background: var(--bg-3);
-  color: var(--ink-2); padding: 2px 7px;
-  border-radius: 999px; margin-left: 6px;
-  vertical-align: 1px; font-weight: 500;
+.tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--amber);
 }
+.tab .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; min-width: 18px; height: 18px;
+  background: var(--bg-deep); color: var(--ink-2);
+  padding: 0 6px; border-radius: 999px;
+  font-weight: 600;
+}
+.tab.active .badge { background: var(--amber-bg); color: var(--amber-ink); }
+
 .pane { display: none; }
 .pane.active { display: block; animation: fadeIn .25s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.filters { display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap; }
-.pill {
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
-  padding: 6px 13px; background: transparent;
-  border: 1px solid var(--line-strong);
+
+/* ===== PERSON CHIPS (filter row) ===== */
+.who-chips {
+  display: flex; gap: 8px; margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.who-chip {
+  display: inline-flex; align-items: center;
+  gap: 8px; padding: 5px 14px 5px 5px;
+  border-radius: 999px; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  border: none; transition: transform .15s, opacity .15s;
+}
+.who-chip:hover { transform: translateY(-1px); }
+.who-chip.muted { opacity: 0.55; }
+.who-chip-avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 11px; font-weight: 600;
+  flex-shrink: 0;
+}
+.who-chip-all { background: var(--bg-soft); color: var(--ink); }
+.who-chip-all .who-chip-avatar { background: var(--ink-3); }
+.who-chip-paul { background: var(--paul-bg); color: var(--paul-ink); }
+.who-chip-paul .who-chip-avatar { background: var(--paul); }
+.who-chip-johanna { background: var(--johanna-bg); color: var(--johanna-ink); }
+.who-chip-johanna .who-chip-avatar { background: var(--johanna); }
+.who-chip-both { background: var(--bg-soft); color: var(--ink); }
+.who-chip-both .who-chip-avatar {
+  background: linear-gradient(135deg, var(--paul) 50%, var(--johanna) 50%);
+  font-size: 9px;
+}
+
+/* ===== CATEGORY FILTERS ===== */
+.cat-row {
+  display: flex; gap: 6px;
+  margin-bottom: 14px; flex-wrap: wrap;
+}
+.cat-pill {
+  font-family: inherit; font-size: 12px; font-weight: 500;
+  padding: 5px 12px; background: transparent;
+  border: 0.5px solid var(--line-strong);
   color: var(--ink-2); border-radius: 999px;
   cursor: pointer; transition: all .15s;
 }
-.pill:hover { border-color: var(--ink-2); color: var(--ink); }
-.pill.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.phase { margin-bottom: 22px; }
-.phase-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.phase-name {
-  font-family: var(--mono); font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-2); margin: 0; font-weight: 500;
+.cat-pill:hover { border-color: var(--ink-2); color: var(--ink); }
+.cat-pill.active {
+  background: var(--ink); color: var(--bg);
+  border-color: var(--ink);
 }
-.phase-rule { flex: 1; height: 1px; background: var(--line); }
-.phase-count { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
-.task {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 14px; border: 1px solid var(--line);
-  border-radius: var(--r-md); background: var(--bg-2);
-  margin-bottom: 6px; cursor: pointer;
-  transition: border-color .15s, background .15s;
-}
-.task:hover { border-color: var(--line-strong); }
-.task.done { background: transparent; }
-.task.done .task-text { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 1px; }
-.cb {
-  appearance: none; -webkit-appearance: none;
-  width: 18px; height: 18px;
-  border: 1.5px solid var(--line-strong);
-  border-radius: 4px; background: var(--bg);
-  cursor: pointer; flex-shrink: 0;
-  margin: 1px 0 0; position: relative;
-  transition: all .15s;
-}
-.cb:hover { border-color: var(--ink-2); }
-.cb:checked { background: var(--ink); border-color: var(--ink); }
-.cb:checked::after {
-  content: ''; position: absolute;
-  top: 2px; left: 5px; width: 4px; height: 9px;
-  border: solid var(--bg); border-width: 0 1.5px 1.5px 0;
-  transform: rotate(45deg);
-}
-.task-body { flex: 1; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.task-text { font-size: 14px; line-height: 1.45; flex: 1; min-width: 200px; }
-.tag {
-  display: inline-block; font-family: var(--mono);
-  font-size: 9.5px; letter-spacing: 0.5px;
-  padding: 3px 9px; border-radius: 999px;
-  white-space: nowrap; font-weight: 500;
-  text-transform: uppercase;
-}
-.tag-admin { background: var(--purple-bg); color: var(--purple); }
-.tag-energie { background: var(--amber-bg); color: var(--amber); }
-.tag-logistique { background: var(--green-bg); color: var(--green); }
-.tag-emballage { background: var(--coral-bg); color: var(--coral); }
 
-/* Person avatars on tasks */
-.who {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--sans); font-weight: 600;
-  font-size: 11px; letter-spacing: -0.2px;
-  cursor: pointer; flex-shrink: 0;
-  border: 1.5px solid var(--bg-2);
-  transition: transform .15s, box-shadow .15s;
-  user-select: none; line-height: 1;
-}
-.who:hover { transform: scale(1.1); box-shadow: 0 0 0 2px var(--line); }
-.who-both {
-  background: linear-gradient(135deg, var(--paul) 50%, var(--johanna) 50%);
-  color: white; font-size: 9px;
-}
-.who-paul { background: var(--paul); color: white; }
-.who-johanna { background: var(--johanna); color: white; }
-.who-none { background: var(--bg-3); color: var(--ink-3); border-color: var(--line); }
-
-/* Custom task delete button */
-.task-del {
-  background: transparent; border: none;
-  color: var(--ink-3); cursor: pointer;
-  padding: 4px 6px; border-radius: 4px;
-  display: inline-flex; align-items: center;
-  flex-shrink: 0;
-  transition: all .15s;
-}
-.task-del:hover { color: var(--coral); background: var(--bg-3); }
-.task-del svg { width: 14px; height: 14px; }
-.task.is-custom { border-style: dashed; border-color: var(--line-strong); }
-
-/* Person filter row */
-.filter-row {
-  display: flex; align-items: center;
-  gap: 10px; flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-.filter-label {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-3); margin-right: 2px;
-  flex-shrink: 0;
-}
-.pill-paul.active { background: var(--paul); border-color: var(--paul); color: white; }
-.pill-johanna.active { background: var(--johanna); border-color: var(--johanna); color: white; }
-
-/* Add task button & form */
-.add-task-bar {
-  display: flex; justify-content: flex-end;
-  margin-bottom: 12px;
-}
-.btn-add-task {
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
+/* ===== ADD-TASK FORM ===== */
+.add-bar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+.btn-add {
+  font-family: inherit; font-size: 13px; font-weight: 500;
   padding: 8px 14px; background: transparent;
   color: var(--ink); border: 1px dashed var(--line-strong);
   border-radius: var(--r-sm); cursor: pointer;
   display: inline-flex; align-items: center; gap: 6px;
   transition: all .15s;
 }
-.btn-add-task:hover { border-color: var(--ink); border-style: solid; background: var(--bg-2); }
-.btn-add-task svg { width: 14px; height: 14px; }
-.add-task-form {
-  display: none;
-  padding: 16px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
+.btn-add:hover {
+  border-color: var(--amber); border-style: solid;
+  background: var(--amber-bg); color: var(--amber-ink);
+}
+.btn-add svg { width: 14px; height: 14px; }
+.add-form {
+  display: none; gap: 10px;
+  padding: 14px; background: var(--bg-soft);
   border-radius: var(--r-md);
-  margin-bottom: 16px;
-  gap: 10px;
+  margin-bottom: 14px;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.add-task-form.open { display: grid; }
-.add-task-form input, .add-task-form select {
-  font-family: var(--sans); font-size: 14px;
-  padding: 10px 12px; background: var(--bg);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-sm); color: var(--ink);
-  width: 100%;
+.add-form.open { display: grid; }
+.add-form input, .add-form select {
+  font-family: inherit; font-size: 14px;
+  padding: 9px 11px; background: var(--bg);
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--r-sm); color: var(--ink); width: 100%;
 }
-.add-task-form input:focus, .add-task-form select:focus {
-  outline: none; border-color: var(--ink);
+.add-form input:focus, .add-form select:focus {
+  outline: none; border-color: var(--amber);
 }
-.add-task-form .field-text { grid-column: 1 / -1; }
-.add-task-form .actions {
+.add-form .field-text { grid-column: 1 / -1; }
+.add-form .actions {
   grid-column: 1 / -1;
   display: flex; gap: 8px; justify-content: flex-end;
-  margin-top: 4px;
+  margin-top: 2px;
 }
-@media (max-width: 720px) {
-  .add-task-form { grid-template-columns: 1fr; }
+
+/* ===== PHASES ===== */
+.phase { margin-bottom: 18px; }
+.phase-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; padding: 0 4px;
 }
+.phase-num {
+  width: 26px; height: 26px;
+  background: var(--amber-bg);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.phase-num span {
+  font-size: 12px; font-weight: 600;
+  color: var(--amber-ink);
+}
+.phase-name {
+  font-size: 13px; font-weight: 500;
+  margin: 0; color: var(--ink);
+}
+.phase-rule { flex: 1; height: 1px; background: var(--line); }
+.phase-count {
+  font-size: 11px; color: var(--ink-3); font-weight: 500;
+}
+
+/* ===== TASKS ===== */
+.task {
+  background: var(--bg-card);
+  border-radius: var(--r-md);
+  border: 0.5px solid var(--line);
+  padding: 11px 14px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 11px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s, transform .12s;
+}
+.task:hover { border-color: var(--line-strong); }
+.task.done { opacity: 0.62; }
+.task.done .task-text {
+  text-decoration: line-through;
+  color: var(--ink-3);
+}
+.task.is-custom { border-style: dashed; border-color: var(--line-strong); }
+.task.celebrate {
+  animation: pop .4s cubic-bezier(.5,0,.2,1);
+}
+@keyframes pop {
+  0%, 100% { transform: none; }
+  40% { transform: scale(1.015); }
+}
+.cb {
+  width: 20px; height: 20px;
+  border-radius: 6px; border: 1.5px solid var(--line-strong);
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; cursor: pointer;
+  transition: all .15s;
+  appearance: none; -webkit-appearance: none;
+  position: relative;
+}
+.cb:hover { border-color: var(--sage); }
+.cb:checked {
+  background: var(--sage); border-color: var(--sage);
+}
+.cb:checked::after {
+  content: ''; position: absolute;
+  top: 3px; left: 6px; width: 4px; height: 9px;
+  border: solid white; border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.task-text {
+  flex: 1; font-size: 14px; line-height: 1.4;
+  color: var(--ink); min-width: 0;
+}
+.tag {
+  display: inline-flex; align-items: center;
+  font-size: 11px; padding: 3px 9px; border-radius: 999px;
+  white-space: nowrap; font-weight: 500;
+  flex-shrink: 0;
+}
+.tag-admin { background: var(--paul-bg); color: var(--paul-ink); }
+.tag-energie { background: var(--amber-bg); color: var(--amber-ink); }
+.tag-logistique { background: var(--sage-bg); color: var(--sage-ink); }
+.tag-emballage { background: var(--terracotta-bg); color: var(--terracotta-ink); }
+
+.who {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 11px; color: white;
+  cursor: pointer; flex-shrink: 0;
+  border: none; font-family: inherit;
+  transition: transform .15s;
+}
+.who:hover { transform: scale(1.1); }
+.who-paul { background: var(--paul); }
+.who-johanna { background: var(--johanna); }
+.who-both {
+  background: linear-gradient(135deg, var(--paul) 50%, var(--johanna) 50%);
+  font-size: 9px;
+}
+.who-none { background: var(--ink-4); color: var(--bg); }
+
+.task-del {
+  background: transparent; border: none;
+  color: var(--ink-4); cursor: pointer;
+  padding: 4px; border-radius: 4px;
+  display: inline-flex; align-items: center;
+  flex-shrink: 0; transition: all .15s;
+}
+.task-del:hover { color: var(--terracotta-ink); background: var(--bg-deep); }
+.task-del svg { width: 14px; height: 14px; }
+
+/* ===== BOXES ===== */
 .box-form {
-  display: grid; grid-template-columns: 80px 130px 1fr auto;
-  gap: 8px; margin-bottom: 16px;
-  padding: 14px; background: var(--bg-2);
-  border: 1px solid var(--line); border-radius: var(--r-md);
+  display: grid;
+  grid-template-columns: 70px 130px 1fr auto;
+  gap: 8px; padding: 14px;
+  background: var(--bg-soft);
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
 }
 .box-form input, .box-form select {
-  font-family: var(--sans); font-size: 14px;
-  padding: 10px 12px; background: var(--bg);
-  border: 1px solid var(--line-strong);
+  font-family: inherit; font-size: 14px;
+  padding: 9px 11px; background: var(--bg);
+  border: 0.5px solid var(--line-strong);
   border-radius: var(--r-sm); color: var(--ink);
 }
 .box-form input:focus, .box-form select:focus {
-  outline: none; border-color: var(--ink);
+  outline: none; border-color: var(--amber);
 }
+
 .btn-primary {
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
-  padding: 10px 18px; background: var(--ink);
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  padding: 9px 16px; background: var(--ink);
   color: var(--bg); border: none;
   border-radius: var(--r-sm); cursor: pointer;
-  white-space: nowrap; letter-spacing: 0.2px;
-  transition: opacity .15s;
+  white-space: nowrap; transition: opacity .15s;
 }
 .btn-primary:hover { opacity: 0.85; }
+
 .btn-secondary {
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
-  padding: 10px 16px; background: var(--bg-2);
-  color: var(--ink); border: 1px solid var(--line-strong);
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  padding: 9px 14px; background: var(--bg-card);
+  color: var(--ink); border: 0.5px solid var(--line-strong);
   border-radius: var(--r-sm); cursor: pointer;
-  white-space: nowrap; letter-spacing: 0.2px;
-  transition: all .15s;
+  white-space: nowrap; transition: all .15s;
 }
-.btn-secondary:hover { background: var(--bg-3); border-color: var(--ink-3); }
+.btn-secondary:hover { background: var(--bg-soft); border-color: var(--ink-3); }
+
 .box-actions { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-.box-list { display: grid; gap: 6px; }
+
 .box-row {
+  background: var(--bg-card);
+  border: 0.5px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 11px 14px; margin-bottom: 6px;
   display: grid;
-  grid-template-columns: 60px 110px 1fr 110px auto auto auto;
-  gap: 12px; align-items: center;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md); background: var(--bg-2);
+  grid-template-columns: 56px 100px 1fr 110px auto auto auto;
+  gap: 11px; align-items: center;
   font-size: 14px;
+  transition: border-color .15s;
 }
-.box-num { font-family: var(--mono); font-weight: 500; color: var(--ink-2); font-size: 13px; }
+.box-row:hover { border-color: var(--line-strong); }
+.box-num {
+  font-weight: 600; color: var(--paul-ink);
+  font-size: 13px;
+  background: var(--paul-bg);
+  padding: 3px 8px; border-radius: var(--r-sm);
+  text-align: center;
+}
 .box-room { font-weight: 500; }
 .box-desc {
-  color: var(--ink-2); overflow: hidden;
-  text-overflow: ellipsis; white-space: nowrap; font-size: 13px;
+  color: var(--ink-2);
+  overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; font-size: 13px;
 }
 .box-status {
-  font-family: var(--mono); font-size: 9.5px;
-  letter-spacing: 1px; text-transform: uppercase;
-  padding: 5px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 999px;
   text-align: center; cursor: pointer;
-  border: 1px solid transparent; font-weight: 500;
-  transition: all .15s;
+  border: none; font-family: inherit;
 }
-.status-todo { background: var(--bg-3); color: var(--ink-2); }
-.status-packed { background: var(--green-bg); color: var(--green); }
-.status-unpacked { background: var(--purple-bg); color: var(--purple); }
+.status-todo { background: var(--bg-deep); color: var(--ink-2); }
+.status-packed { background: var(--sage-bg); color: var(--sage-ink); }
+.status-unpacked { background: var(--lavender-bg); color: var(--lavender-ink); }
+
 .row-btn {
   background: transparent; border: none;
   color: var(--ink-3); cursor: pointer;
@@ -421,116 +571,245 @@ input[type="date"]:focus { outline: none; border-color: var(--ink-2); }
   display: inline-flex; align-items: center; justify-content: center;
   transition: all .15s;
 }
-.row-btn:hover { color: var(--ink); background: var(--bg-3); }
-.row-btn.danger:hover { color: var(--coral); }
+.row-btn:hover { color: var(--ink); background: var(--bg-soft); }
+.row-btn.danger:hover { color: var(--terracotta-ink); background: var(--terracotta-bg); }
 .row-btn svg { width: 16px; height: 16px; }
-.contact-group { margin-bottom: 28px; }
+
+/* ===== SCAN & SEARCH MODULES ===== */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px; margin-bottom: 14px;
+}
+.module-card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 14px;
+}
+.module-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.module-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.module-icon-scan { background: var(--lavender); }
+.module-icon-search { background: var(--mint); }
+.module-icon svg { width: 18px; height: 18px; }
+.module-icon-scan svg { stroke: var(--lavender-ink); }
+.module-icon-search svg { stroke: var(--mint-ink); }
+.module-title {
+  font-size: 14px; font-weight: 500; margin: 0;
+  color: var(--ink);
+}
+.module-sub {
+  font-size: 11px; color: var(--ink-2); margin: 0;
+}
+
+/* Scanner viewport */
+.scanner-view {
+  background: #1A1814;
+  border-radius: var(--r-md);
+  aspect-ratio: 4/3;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.scanner-view.empty::before {
+  content: ''; position: absolute; inset: 28px;
+  border: 2px solid var(--amber); border-radius: 8px; opacity: 0.6;
+}
+.scanner-view.empty::after {
+  content: 'Appuie sur démarrer';
+  color: rgba(255, 252, 247, 0.7);
+  font-size: 13px; font-weight: 500;
+}
+#qr-reader {
+  width: 100%; height: 100%; position: relative;
+}
+#qr-reader video {
+  width: 100% !important; height: 100% !important;
+  object-fit: cover; border-radius: var(--r-md);
+}
+#qr-reader__dashboard, #qr-reader__header_message,
+#qr-reader__dashboard_section_csr,
+#qr-reader__dashboard_section_swaplink,
+#qr-reader__camera_selection {
+  display: none !important;
+}
+.scanner-actions {
+  display: flex; gap: 8px; margin-top: 10px;
+}
+.scanner-actions button { flex: 1; }
+.scan-result {
+  margin-top: 10px; padding: 10px 12px;
+  background: var(--sage-bg); color: var(--sage-ink);
+  border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500;
+  display: none;
+}
+.scan-result.show { display: block; }
+.scan-result.error { background: var(--terracotta-bg); color: var(--terracotta-ink); }
+
+/* Search */
+.search-input {
+  width: 100%; padding: 9px 12px;
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  font-size: 13px; margin-bottom: 10px;
+  background: var(--bg); color: var(--ink);
+  font-family: inherit;
+}
+.search-input:focus { outline: none; border-color: var(--amber); }
+.search-results {
+  display: flex; flex-direction: column; gap: 6px;
+  max-height: 220px; overflow-y: auto;
+}
+.search-result {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  background: var(--bg-soft); border-radius: var(--r-sm);
+  font-size: 12px; cursor: pointer;
+  transition: background .15s;
+}
+.search-result:hover { background: var(--bg-deep); }
+.search-result .num {
+  background: var(--paul); color: white;
+  padding: 2px 7px; border-radius: 4px;
+  font-size: 10px; font-weight: 600;
+}
+.search-result .room { font-weight: 500; color: var(--ink); }
+.search-result .desc { color: var(--ink-2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-empty {
+  padding: 16px 12px; text-align: center;
+  color: var(--ink-3); font-size: 12px;
+  font-style: italic;
+}
+
+/* ===== CONTACTS ===== */
+.contact-group { margin-bottom: 22px; }
 .contact-group h3 {
-  font-family: var(--mono); font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-2); margin: 0 0 12px; font-weight: 500;
+  font-size: 11px; font-weight: 500;
+  color: var(--ink-2); margin: 0 0 10px;
+  letter-spacing: 0.3px;
 }
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 10px;
 }
 .contact-card {
-  padding: 14px 16px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 0.5px solid var(--line);
   border-radius: var(--r-md);
-  position: relative; overflow: hidden;
+  position: relative;
   transition: border-color .15s;
 }
 .contact-card:hover { border-color: var(--line-strong); }
-.contact-card::before {
-  content: ''; position: absolute;
-  top: 12px; left: 0; bottom: 12px;
-  width: 2px; background: var(--ink); opacity: 0.2;
-}
-.contact-name { font-weight: 500; font-size: 14px; margin: 0 0 4px; }
+.contact-name { font-weight: 500; font-size: 14px; margin: 0 0 3px; color: var(--ink); }
 .contact-meta {
   font-size: 12.5px; color: var(--ink-2);
   margin: 0 0 2px; line-height: 1.45;
 }
-.contact-meta a { color: var(--accent); text-decoration: none; }
+.contact-meta a { color: var(--paul-ink); text-decoration: none; }
 .contact-meta a:hover { text-decoration: underline; }
+
+/* ===== TOOLS ===== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px; margin-bottom: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px; margin-bottom: 16px;
 }
 .tool-card {
-  padding: 18px 20px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  display: flex; flex-direction: column; gap: 12px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 0.5px solid var(--line);
+  border-radius: var(--r-lg);
+  display: flex; flex-direction: column; gap: 10px;
 }
 .tool-card h3 {
-  font-family: var(--serif); font-weight: 400;
-  font-variation-settings: 'opsz' 36;
-  font-size: 19px; margin: 0;
-  letter-spacing: -0.01em;
+  font-size: 15px; font-weight: 500; margin: 0;
+  color: var(--ink);
 }
 .tool-card p {
-  font-size: 13px; color: var(--ink-2);
+  font-size: 12.5px; color: var(--ink-2);
   margin: 0; line-height: 1.5; flex: 1;
 }
-.tool-card .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .settings {
-  padding: 18px 20px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
+  padding: 16px;
+  background: var(--bg-soft);
   border-radius: var(--r-md);
-  display: grid; gap: 14px;
+  display: grid; gap: 12px;
 }
 .settings h3 {
-  font-family: var(--serif); font-weight: 400;
-  font-variation-settings: 'opsz' 36;
-  font-size: 19px; margin: 0 0 4px;
+  font-size: 14px; font-weight: 500; margin: 0;
 }
-.settings p { font-size: 13px; color: var(--ink-2); margin: 0; }
-.field { display: grid; gap: 6px; }
+.settings p { font-size: 12px; color: var(--ink-2); margin: 0; }
+.field { display: grid; gap: 5px; }
 .field label {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--ink-3);
+  font-size: 11px; color: var(--ink-2);
+  font-weight: 500;
 }
 .field input[type="text"], .field input[type="url"] {
-  font-family: var(--mono); font-size: 13px;
-  padding: 10px 12px; background: var(--bg);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-sm); color: var(--ink); width: 100%;
+  font-size: 13px; padding: 9px 11px;
+  background: var(--bg);
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--r-sm); color: var(--ink);
+  width: 100%; font-family: inherit;
 }
-.field input:focus { outline: none; border-color: var(--ink); }
-.field-hint { font-size: 11px; color: var(--ink-3); font-style: italic; }
+.field input:focus { outline: none; border-color: var(--amber); }
+.field-hint { font-size: 11px; color: var(--ink-3); }
+
+/* ===== EMPTY STATES ===== */
 .empty {
-  padding: 40px 20px; text-align: center;
+  padding: 36px 20px; text-align: center;
   color: var(--ink-3); font-size: 13px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--r-md);
 }
 .empty .em {
-  font-family: var(--serif); font-style: italic;
-  font-size: 18px; color: var(--ink-2);
+  font-size: 16px; color: var(--ink-2);
   display: block; margin-bottom: 4px;
-  font-variation-settings: 'opsz' 36;
+  font-weight: 500;
 }
+
+/* ===== TOAST ===== */
 .toast {
   position: fixed; bottom: 20px; left: 50%;
   transform: translateX(-50%) translateY(120%);
   background: var(--ink); color: var(--bg);
-  font-size: 13px; padding: 11px 20px;
+  font-size: 13px; padding: 10px 18px;
   border-radius: var(--r-sm); z-index: 1000;
   transition: transform .3s cubic-bezier(.5,0,.2,1);
-  max-width: 90vw; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  max-width: 90vw; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  font-weight: 500;
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== CONFETTI / CELEBRATION ===== */
+.confetti {
+  position: fixed; pointer-events: none;
+  z-index: 999; top: 0; left: 0;
+  width: 100%; height: 100%; overflow: hidden;
+}
+.confetti span {
+  position: absolute; width: 8px; height: 8px;
+  border-radius: 2px; opacity: 0;
+  animation: confetti-fall 1.2s ease-out forwards;
+}
+@keyframes confetti-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0); }
+  100% { opacity: 0; transform: translateY(80vh) rotate(720deg); }
+}
+
+/* ===== FOOTER ===== */
 footer {
-  margin-top: 56px; padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: 48px; padding-top: 20px;
+  border-top: 0.5px solid var(--line);
   font-size: 12px; color: var(--ink-3);
   display: flex; justify-content: space-between;
   flex-wrap: wrap; gap: 8px;
@@ -540,16 +819,19 @@ footer .reset {
   color: var(--ink-3); text-decoration: underline;
   font: inherit; padding: 0;
 }
-footer .reset:hover { color: var(--coral); }
+footer .reset:hover { color: var(--terracotta-ink); }
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 720px) {
-  .shell { padding: 20px 16px 60px; }
-  header { grid-template-columns: 1fr; gap: 16px; }
-  .head-actions { gap: 8px; }
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .stat { padding: 12px 14px; }
-  .stat .val { font-size: 26px; }
+  .shell { padding: 16px 14px 60px; }
+  .header-top { gap: 10px; }
+  .header-icon { width: 38px; height: 38px; }
+  .header-title { font-size: 16px; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .stat-val { font-size: 18px; }
+  .add-form { grid-template-columns: 1fr 1fr; }
   .box-form {
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 70px 1fr;
     grid-template-areas: 'num room' 'desc desc' 'add add';
   }
   .box-form input:nth-of-type(1) { grid-area: num; }
@@ -562,7 +844,7 @@ footer .reset:hover { color: var(--coral); }
       'num room actions del'
       'desc desc desc desc'
       'status status status status';
-    gap: 8px; padding: 12px;
+    gap: 8px; padding: 10px;
   }
   .box-row > .box-num { grid-area: num; }
   .box-row > .box-room { grid-area: room; }
@@ -570,18 +852,21 @@ footer .reset:hover { color: var(--coral); }
   .box-row > .box-status { grid-area: status; justify-self: start; }
   .box-row > .row-btn:first-of-type { grid-area: actions; justify-self: end; }
   .box-row > .row-btn.danger { grid-area: del; justify-self: end; }
+  .task { padding: 10px 12px; gap: 9px; }
+  .tag { font-size: 10px; padding: 2px 7px; }
 }
+
 @media print {
-  body { background: white; color: black; background-image: none; }
-  header, .tabs, .filters, footer, .head-actions, .progress, .stats, .box-form, .box-actions, .tools-grid, .settings, .box-row .row-btn { display: none !important; }
+  body { background: white; color: black; }
+  .header-card, .tabs, .who-chips, .cat-row, .add-bar, .add-form,
+  .box-form, .box-actions, .box-row .row-btn, .module-grid,
+  .tools-grid, .settings, .head-actions, footer { display: none !important; }
   .pane { display: block !important; }
-  /* When printing labels via iframe: hide everything except the iframe */
   body.printing-labels > *:not(#print-frame) { display: none !important; }
   body.printing-labels #print-frame {
     visibility: visible !important;
     position: static !important;
-    width: 100% !important;
-    height: 100vh !important;
+    width: 100% !important; height: 100vh !important;
     border: 0 !important;
   }
 }
@@ -589,78 +874,100 @@ footer .reset:hover { color: var(--coral); }
 </head>
 <body>
 <div class="shell">
-  <header>
-    <div>
-      <p class="eyebrow">Planificateur de déménagement<span class="dot"></span>Luxembourg</p>
-      <h1>Gare<em>→</em>Bettembourg</h1>
-    </div>
-    <div class="head-actions">
-      <div class="date-block">
+
+  <div class="header-card">
+    <div class="header-top">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3D2A0A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/>
+          <path d="M3 7l9 4 9-4M12 11v10"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <p class="header-eyebrow">Notre déménagement</p>
+        <p class="header-title">Gare → Bettembourg</p>
+      </div>
+      <div class="header-date">
         <label for="move-date">Jour J</label>
         <input type="date" id="move-date" />
       </div>
-      <button class="btn-install hidden" id="install-btn">Installer</button>
-      <button class="icon-btn" id="theme-btn" title="Changer de thème" aria-label="Changer de thème">
-        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      </button>
     </div>
-  </header>
 
-  <div class="stats">
-    <div class="stat">
-      <p class="lbl">Checklist</p>
-      <p class="val" id="stat-done">0/28</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-lbl">Tâches</div>
+        <div class="stat-val" id="stat-done">0/29</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">Cartons</div>
+        <div class="stat-val" id="stat-boxes">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">Emballés</div>
+        <div class="stat-val" id="stat-packed">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">Restants</div>
+        <div class="stat-val" id="stat-days">—</div>
+      </div>
     </div>
-    <div class="stat">
-      <p class="lbl">Cartons</p>
-      <p class="val" id="stat-boxes">0</p>
+
+    <div class="progress-meta">
+      <span class="progress-lbl">Progression</span>
+      <span class="progress-val" id="progress-text">0%</span>
     </div>
-    <div class="stat">
-      <p class="lbl">Emballés</p>
-      <p class="val" id="stat-packed">0</p>
-    </div>
-    <div class="stat" id="stat-days-card">
-      <p class="lbl">Jours restants</p>
-      <p class="val" id="stat-days">—</p>
-    </div>
+    <div class="progress"><div id="progress-bar" style="width: 0%;"></div></div>
   </div>
 
-  <div class="progress"><div id="progress" style="width: 0%;"></div></div>
+  <div class="head-actions">
+    <button class="btn-install hidden" id="install-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Installer
+    </button>
+    <button class="icon-btn" id="theme-btn" title="Changer de thème" aria-label="Changer de thème">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
 
   <nav class="tabs">
     <button class="tab active" data-tab="checklist">Checklist <span class="badge" id="badge-checklist">0</span></button>
     <button class="tab" data-tab="boxes">Cartons <span class="badge" id="badge-boxes">0</span></button>
+    <button class="tab" data-tab="scan">Scan</button>
     <button class="tab" data-tab="contacts">Contacts</button>
     <button class="tab" data-tab="tools">Outils</button>
   </nav>
 
   <section class="pane active" id="pane-checklist">
-    <div class="filter-row">
-      <span class="filter-label">Catégorie</span>
-      <div class="filters" id="cat-filters" style="margin: 0;">
-        <button class="pill active" data-cat="all">Toutes</button>
-        <button class="pill" data-cat="admin">Admin</button>
-        <button class="pill" data-cat="energie">Énergie/Télécom</button>
-        <button class="pill" data-cat="logistique">Logistique</button>
-        <button class="pill" data-cat="emballage">Emballage</button>
-      </div>
+    <div class="who-chips" id="who-chips">
+      <button class="who-chip who-chip-all" data-who="all">
+        <span class="who-chip-avatar">∗</span><span>Tous · <span id="count-all">0</span></span>
+      </button>
+      <button class="who-chip who-chip-paul muted" data-who="paul">
+        <span class="who-chip-avatar">P</span><span>Paul · <span id="count-paul">0</span></span>
+      </button>
+      <button class="who-chip who-chip-johanna muted" data-who="johanna">
+        <span class="who-chip-avatar">J</span><span>Johanna · <span id="count-johanna">0</span></span>
+      </button>
+      <button class="who-chip who-chip-both muted" data-who="both">
+        <span class="who-chip-avatar">PJ</span><span>Ensemble · <span id="count-both">0</span></span>
+      </button>
     </div>
-    <div class="filter-row">
-      <span class="filter-label">Personne</span>
-      <div class="filters" id="who-filters" style="margin: 0;">
-        <button class="pill active" data-who="all">Toutes</button>
-        <button class="pill pill-paul" data-who="paul">Paul</button>
-        <button class="pill pill-johanna" data-who="johanna">Johanna</button>
-        <button class="pill" data-who="both">Les deux</button>
-      </div>
+
+    <div class="cat-row" id="cat-filters">
+      <button class="cat-pill active" data-cat="all">Toutes catégories</button>
+      <button class="cat-pill" data-cat="admin">Admin</button>
+      <button class="cat-pill" data-cat="energie">Énergie/Télécom</button>
+      <button class="cat-pill" data-cat="logistique">Logistique</button>
+      <button class="cat-pill" data-cat="emballage">Emballage</button>
     </div>
-    <div class="add-task-bar">
-      <button class="btn-add-task" id="show-add-task">
+
+    <div class="add-bar">
+      <button class="btn-add" id="show-add-task">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         Ajouter une tâche
       </button>
     </div>
-    <form class="add-task-form" id="add-task-form" onsubmit="return false;">
+    <form class="add-form" id="add-task-form" onsubmit="return false;">
       <input class="field-text" type="text" id="nt-text" placeholder="Texte de la tâche…" maxlength="120" />
       <select id="nt-phase">
         <option value="J-30 · Préparation">J-30 · Préparation</option>
@@ -676,7 +983,7 @@ footer .reset:hover { color: var(--coral); }
         <option value="emballage">Emballage</option>
       </select>
       <select id="nt-who">
-        <option value="both">Les deux</option>
+        <option value="both">Ensemble</option>
         <option value="paul">Paul</option>
         <option value="johanna">Johanna</option>
         <option value="none">Non assignée</option>
@@ -686,6 +993,7 @@ footer .reset:hover { color: var(--coral); }
         <button class="btn-primary" type="submit" id="nt-add">Ajouter la tâche</button>
       </div>
     </form>
+
     <div id="checklist"></div>
   </section>
 
@@ -703,7 +1011,45 @@ footer .reset:hover { color: var(--coral); }
       <button class="btn-secondary" id="print-all-labels">Imprimer toutes les étiquettes</button>
       <button class="btn-secondary" id="export-boxes-csv">Export CSV</button>
     </div>
-    <div id="box-list" class="box-list"></div>
+    <div id="box-list"></div>
+  </section>
+
+  <section class="pane" id="pane-scan">
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="module-head">
+          <div class="module-icon module-icon-scan">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg>
+          </div>
+          <div>
+            <p class="module-title">Scanner un carton</p>
+            <p class="module-sub">Pointe la caméra sur l'étiquette QR</p>
+          </div>
+        </div>
+        <div class="scanner-view empty" id="scanner-view">
+          <div id="qr-reader" style="display: none;"></div>
+        </div>
+        <div class="scanner-actions">
+          <button class="btn-primary" id="scan-start">Démarrer la caméra</button>
+          <button class="btn-secondary" id="scan-stop" style="display: none;">Arrêter</button>
+        </div>
+        <div class="scan-result" id="scan-result"></div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-head">
+          <div class="module-icon module-icon-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <div>
+            <p class="module-title">Recherche d'objet</p>
+            <p class="module-sub">« Où est mon… »</p>
+          </div>
+        </div>
+        <input type="text" class="search-input" id="search-input" placeholder="chargeur, livre, casserole…" autocomplete="off" />
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </div>
   </section>
 
   <section class="pane" id="pane-contacts">
@@ -714,42 +1060,36 @@ footer .reset:hover { color: var(--coral); }
     <div class="tools-grid">
       <div class="tool-card">
         <h3>Export PDF</h3>
-        <p>Imprime une checklist propre — utile pour garder une trace papier ou la partager avec ta moitié.</p>
-        <div class="actions">
-          <button class="btn-primary" id="export-pdf">Générer le PDF</button>
-        </div>
+        <p>Imprime une checklist propre — pour garder une trace papier ou la partager.</p>
+        <button class="btn-primary" id="export-pdf">Générer le PDF</button>
       </div>
       <div class="tool-card">
         <h3>Calendrier (.ics)</h3>
-        <p>Importe les jalons (J-30, J-15, J-7, jour J, J+8) dans Google Calendar, Apple Calendar ou Outlook.</p>
-        <div class="actions">
-          <button class="btn-primary" id="export-ics">Télécharger .ics</button>
-        </div>
+        <p>Importe les jalons (J-30, J-15, J-7, jour J, J+8) dans Google ou Apple Calendar.</p>
+        <button class="btn-primary" id="export-ics">Télécharger .ics</button>
       </div>
       <div class="tool-card">
         <h3>Étiquettes 80×50mm</h3>
-        <p>Aperçu d'impression aux dimensions DYMO LW550 Turbo. Avec QR code pour scanner le contenu plus tard.</p>
-        <div class="actions">
-          <button class="btn-primary" id="print-labels-tools">Imprimer les étiquettes</button>
-        </div>
+        <p>Aperçu d'impression aux dimensions DYMO LW550 Turbo, avec QR code intégré.</p>
+        <button class="btn-primary" id="print-labels-tools">Imprimer les étiquettes</button>
       </div>
     </div>
 
     <div class="settings">
       <div>
         <h3>Réglages avancés</h3>
-        <p>Pour piloter directement ta DYMO LW550 Turbo via ton proxy local Node.js (HTTP → TCP).</p>
+        <p>Endpoint du proxy local pour piloter directement la DYMO LW550 Turbo.</p>
       </div>
       <div class="field">
-        <label for="dymo-endpoint">Endpoint du proxy DYMO</label>
+        <label for="dymo-endpoint">URL du proxy DYMO</label>
         <input type="url" id="dymo-endpoint" placeholder="http://localhost:3000/print" />
-        <span class="field-hint">Si renseigné, un bouton « envoyer à DYMO » apparaît sur chaque carton. Le proxy reçoit un POST JSON {num, room, desc, qr}.</span>
+        <span class="field-hint">Si renseigné, un bouton « → DYMO » apparaît sur chaque carton.</span>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>Données stockées localement · v1.0.0</span>
+    <span>Données stockées localement · v2.0.0</span>
     <button class="reset" id="reset-all">Tout réinitialiser</button>
   </footer>
 </div>
@@ -758,6 +1098,7 @@ footer .reset:hover { color: var(--coral); }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <script>
 'use strict';
 
@@ -819,6 +1160,9 @@ const CONTACTS = [
 ];
 
 const TAG_LABEL = { admin: 'Admin', energie: 'Énergie', logistique: 'Logistique', emballage: 'Emballage' };
+const WHO_NEXT = { both: 'paul', paul: 'johanna', johanna: 'none', none: 'both' };
+const WHO_LABEL = { both: 'PJ', paul: 'P', johanna: 'J', none: '?' };
+const WHO_FULL = { both: 'Paul & Johanna', paul: 'Paul', johanna: 'Johanna', none: 'Non assignée' };
 
 const STORAGE = {
   checks: 'demenagement.checks',
@@ -838,36 +1182,19 @@ let state = {
   filter: 'all',
   whoFilter: 'all',
   settings: { dymoEndpoint: '' },
-  assignments: {},      // { taskId: 'paul' | 'johanna' | 'both' | 'none' }
-  customTasks: []       // [{ id, phase, text, cat, person, custom: true }]
+  assignments: {},
+  customTasks: []
 };
 let deferredPrompt = null;
+let qrScanner = null;
 
 function loadState() {
-  try {
-    const c = localStorage.getItem(STORAGE.checks);
-    if (c) state.checks = JSON.parse(c);
-  } catch (e) {}
-  try {
-    const b = localStorage.getItem(STORAGE.boxes);
-    if (b) state.boxes = JSON.parse(b);
-  } catch (e) {}
-  try {
-    const d = localStorage.getItem(STORAGE.date);
-    if (d) state.date = d;
-  } catch (e) {}
-  try {
-    const s = localStorage.getItem(STORAGE.settings);
-    if (s) state.settings = Object.assign(state.settings, JSON.parse(s));
-  } catch (e) {}
-  try {
-    const a = localStorage.getItem(STORAGE.assignments);
-    if (a) state.assignments = JSON.parse(a);
-  } catch (e) {}
-  try {
-    const ct = localStorage.getItem(STORAGE.customTasks);
-    if (ct) state.customTasks = JSON.parse(ct);
-  } catch (e) {}
+  try { const c = localStorage.getItem(STORAGE.checks); if (c) state.checks = JSON.parse(c); } catch (e) {}
+  try { const b = localStorage.getItem(STORAGE.boxes); if (b) state.boxes = JSON.parse(b); } catch (e) {}
+  try { const d = localStorage.getItem(STORAGE.date); if (d) state.date = d; } catch (e) {}
+  try { const s = localStorage.getItem(STORAGE.settings); if (s) state.settings = Object.assign(state.settings, JSON.parse(s)); } catch (e) {}
+  try { const a = localStorage.getItem(STORAGE.assignments); if (a) state.assignments = JSON.parse(a); } catch (e) {}
+  try { const ct = localStorage.getItem(STORAGE.customTasks); if (ct) state.customTasks = JSON.parse(ct); } catch (e) {}
 }
 
 const save = {
@@ -920,20 +1247,32 @@ function icsEscape(s) {
   return String(s).replace(/[\\;,]/g, m => '\\' + m).replace(/\n/g, '\\n');
 }
 
-// Tasks combined with custom; person resolved from assignments map
 function getAllTasks() {
   const all = [...TASKS, ...state.customTasks];
   return all.map(t => ({ ...t, person: state.assignments[t.id] || (t.custom ? (t.person || 'both') : 'both') }));
 }
 
-const WHO_NEXT = { both: 'paul', paul: 'johanna', johanna: 'none', none: 'both' };
-const WHO_LABEL = { both: 'PJ', paul: 'P', johanna: 'J', none: '?' };
-const WHO_FULL = { both: 'Paul & Johanna', paul: 'Paul', johanna: 'Johanna', none: 'Non assignée' };
-
 function cycleWho(taskId) {
   const cur = state.assignments[taskId] || 'both';
   state.assignments[taskId] = WHO_NEXT[cur];
   save.assignments();
+}
+
+function fireConfetti() {
+  const colors = ['#8FAB75', '#6B8FB2', '#C77B95', '#E8B86A', '#C4B5DC'];
+  const root = document.createElement('div');
+  root.className = 'confetti';
+  for (let i = 0; i < 24; i++) {
+    const s = document.createElement('span');
+    s.style.background = colors[i % colors.length];
+    s.style.left = (50 + (Math.random() - 0.5) * 50) + '%';
+    s.style.top = '30%';
+    s.style.animationDelay = (Math.random() * 0.15) + 's';
+    s.style.transform = 'translate(' + ((Math.random() - 0.5) * 200) + 'px, 0)';
+    root.appendChild(s);
+  }
+  document.body.appendChild(root);
+  setTimeout(() => root.remove(), 1600);
 }
 
 // ============== RENDERERS ==============
@@ -942,42 +1281,63 @@ function renderChecklist() {
   let all = getAllTasks();
   if (state.filter !== 'all') all = all.filter(t => t.cat === state.filter);
   if (state.whoFilter !== 'all') all = all.filter(t => t.person === state.whoFilter);
+
+  // Update person counts (always based on full list, not filtered)
+  const fullList = getAllTasks();
+  document.getElementById('count-all').textContent = fullList.length;
+  document.getElementById('count-paul').textContent = fullList.filter(t => t.person === 'paul').length;
+  document.getElementById('count-johanna').textContent = fullList.filter(t => t.person === 'johanna').length;
+  document.getElementById('count-both').textContent = fullList.filter(t => t.person === 'both').length;
+
   if (!all.length) {
-    root.innerHTML = '<div class="empty"><span class="em">Aucune tâche ne correspond</span>Ajuste les filtres ou ajoute une tâche.</div>';
+    root.innerHTML = '<div class="empty"><span class="em">Rien ici</span>Ajuste les filtres ou ajoute une tâche.</div>';
     return;
   }
-  // Phase order: original TASKS phase order preserved, then any custom phases
   const phaseOrder = [...new Set([...TASKS, ...state.customTasks].map(t => t.phase))];
   const phases = phaseOrder.filter(p => all.some(t => t.phase === p));
-  root.innerHTML = phases.map(p => {
+
+  root.innerHTML = phases.map((p, i) => {
     const items = all.filter(t => t.phase === p);
     const done = items.filter(t => state.checks[t.id]).length;
     return '<div class="phase">' +
       '<div class="phase-head">' +
+        '<div class="phase-num"><span>' + (i + 1) + '</span></div>' +
         '<p class="phase-name">' + escapeHtml(p) + '</p>' +
         '<div class="phase-rule"></div>' +
         '<span class="phase-count">' + done + '/' + items.length + '</span>' +
       '</div>' +
       items.map(t => {
         const whoClass = 'who-' + t.person;
-        const whoLabel = WHO_LABEL[t.person];
-        const whoTitle = WHO_FULL[t.person] + ' · clic pour changer';
-        return '<label class="task ' + (state.checks[t.id] ? 'done' : '') + (t.custom ? ' is-custom' : '') + '">' +
+        return '<label class="task ' + (state.checks[t.id] ? 'done' : '') + (t.custom ? ' is-custom' : '') + '" data-task="' + t.id + '">' +
           '<input type="checkbox" class="cb" data-id="' + t.id + '" ' + (state.checks[t.id] ? 'checked' : '') + ' />' +
-          '<div class="task-body">' +
-            '<span class="task-text">' + escapeHtml(t.text) + '</span>' +
-            '<span class="tag tag-' + t.cat + '">' + TAG_LABEL[t.cat] + '</span>' +
-            '<button type="button" class="who ' + whoClass + '" data-who="' + t.id + '" title="' + escapeHtml(whoTitle) + '">' + whoLabel + '</button>' +
-            (t.custom ? '<button type="button" class="task-del" data-del="' + t.id + '" title="Supprimer cette tâche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>' : '') +
-          '</div>' +
+          '<span class="task-text">' + escapeHtml(t.text) + '</span>' +
+          '<span class="tag tag-' + t.cat + '">' + TAG_LABEL[t.cat] + '</span>' +
+          '<button type="button" class="who ' + whoClass + '" data-who="' + t.id + '" title="' + escapeHtml(WHO_FULL[t.person]) + ' · clic pour changer">' + WHO_LABEL[t.person] + '</button>' +
+          (t.custom ? '<button type="button" class="task-del" data-del="' + t.id + '" title="Supprimer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>' : '') +
         '</label>';
       }).join('') +
     '</div>';
   }).join('');
+
   root.querySelectorAll('input.cb').forEach(cb => {
     cb.addEventListener('change', e => {
+      const wasChecked = state.checks[e.target.dataset.id];
       state.checks[e.target.dataset.id] = e.target.checked;
       save.checks();
+      // Visual celebration on completion
+      if (e.target.checked && !wasChecked) {
+        const taskEl = e.target.closest('.task');
+        if (taskEl) {
+          taskEl.classList.add('celebrate');
+          setTimeout(() => taskEl.classList.remove('celebrate'), 400);
+        }
+        // Check if all tasks done → confetti
+        const allIds = new Set(getAllTasks().map(t => t.id));
+        const totalDone = Object.entries(state.checks).filter(([id, v]) => v && allIds.has(id)).length;
+        if (totalDone === allIds.size) {
+          setTimeout(() => { fireConfetti(); showToast('🎉 Toutes les tâches sont faites !'); }, 200);
+        }
+      }
       renderChecklist();
       renderStats();
       updateBadges();
@@ -985,28 +1345,22 @@ function renderChecklist() {
   });
   root.querySelectorAll('button.who').forEach(btn => {
     btn.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); e.stopPropagation();
       cycleWho(btn.dataset.who);
       renderChecklist();
-      renderStats();
     });
   });
   root.querySelectorAll('button.task-del').forEach(btn => {
     btn.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); e.stopPropagation();
       const id = btn.dataset.del;
       const task = state.customTasks.find(t => t.id === id);
       if (!task) return;
       if (!confirm('Supprimer la tâche : « ' + task.text + ' » ?')) return;
       state.customTasks = state.customTasks.filter(t => t.id !== id);
-      delete state.checks[id];
-      delete state.assignments[id];
+      delete state.checks[id]; delete state.assignments[id];
       save.customTasks(); save.checks(); save.assignments();
-      renderChecklist();
-      renderStats();
-      updateBadges();
+      renderChecklist(); renderStats(); updateBadges();
       showToast('Tâche supprimée');
     });
   });
@@ -1041,6 +1395,7 @@ function renderBoxes() {
       '</button>' +
     '</div>';
   }).join('');
+
   root.querySelectorAll('[data-status]').forEach(btn => {
     btn.addEventListener('click', () => {
       const b = state.boxes.find(x => String(x.id) === btn.dataset.status);
@@ -1051,7 +1406,9 @@ function renderBoxes() {
   });
   root.querySelectorAll('[data-del]').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (!confirm('Supprimer le carton #' + (state.boxes.find(x => String(x.id) === btn.dataset.del)||{}).num + ' ?')) return;
+      const b = state.boxes.find(x => String(x.id) === btn.dataset.del);
+      if (!b) return;
+      if (!confirm('Supprimer le carton #' + b.num + ' ?')) return;
       state.boxes = state.boxes.filter(x => String(x.id) !== btn.dataset.del);
       save.boxes(); renderBoxes(); renderStats(); updateBadges();
     });
@@ -1096,27 +1453,32 @@ function renderStats() {
   document.getElementById('stat-done').textContent = done + '/' + total;
   document.getElementById('stat-boxes').textContent = state.boxes.length;
   document.getElementById('stat-packed').textContent = packed;
-  document.getElementById('progress').style.width = Math.round((done / Math.max(total, 1)) * 100) + '%';
+  const pct = Math.round((done / Math.max(total, 1)) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  const txt = document.getElementById('progress-text');
+  if (pct === 0) txt.textContent = 'on commence ?';
+  else if (pct < 30) txt.textContent = pct + '% · belle énergie';
+  else if (pct < 60) txt.textContent = pct + '% · ça avance bien';
+  else if (pct < 100) txt.textContent = pct + '% · presque !';
+  else txt.textContent = pct + '% · 🎉 bravo';
 
-  const card = document.getElementById('stat-days-card');
+  const daysEl = document.getElementById('stat-days');
   if (state.date) {
     const d = new Date(state.date);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
     const days = Math.round((d - today) / 86400000);
-    document.getElementById('stat-days').textContent = days >= 0 ? days + ' j' : 'J+' + Math.abs(days);
-    card.classList.toggle('urgent', days >= 0 && days <= 7);
+    daysEl.textContent = days >= 0 ? days + ' j' : 'J+' + Math.abs(days);
+    daysEl.classList.toggle('urgent', days >= 0 && days <= 7);
   } else {
-    document.getElementById('stat-days').textContent = '—';
-    card.classList.remove('urgent');
+    daysEl.textContent = '—';
+    daysEl.classList.remove('urgent');
   }
 }
 
 function updateBadges() {
   const allIds = new Set(getAllTasks().map(t => t.id));
-  const total = allIds.size;
   const done = Object.entries(state.checks).filter(([id, v]) => v && allIds.has(id)).length;
-  document.getElementById('badge-checklist').textContent = (total - done);
+  document.getElementById('badge-checklist').textContent = (allIds.size - done);
   document.getElementById('badge-boxes').textContent = state.boxes.length;
 }
 
@@ -1128,12 +1490,8 @@ function addBox() {
   const desc = descIn.value.trim();
   const num = parseInt(numIn.value, 10) || nextBoxNum();
   state.boxes.push({ id: Date.now() + Math.random(), num, room, desc, status: 'todo' });
-  numIn.value = '';
-  descIn.value = '';
-  save.boxes();
-  renderBoxes();
-  renderStats();
-  updateBadges();
+  numIn.value = ''; descIn.value = '';
+  save.boxes(); renderBoxes(); renderStats(); updateBadges();
   descIn.focus();
 }
 
@@ -1153,27 +1511,21 @@ function downloadFile(filename, content, mime) {
   const blob = new Blob(['\uFEFF' + content], { type: mime });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-// ============== ICS EXPORT ==============
+// ============== ICS ==============
 function exportICS() {
-  if (!state.date) {
-    showToast('Renseigne d\'abord le jour J en haut');
-    return;
-  }
-  const baseDate = new Date(state.date);
+  if (!state.date) { showToast('Renseigne d\'abord le jour J en haut'); return; }
   const milestones = [
-    { offset: -30, name: 'J-30 · Préparation', cat: 'logistique', filter: t => t.phase.startsWith('J-30') },
-    { offset: -15, name: 'J-15 · Démarches admin', cat: 'admin', filter: t => t.phase.startsWith('J-15') },
-    { offset: -7, name: 'J-7 · Emballage', cat: 'emballage', filter: t => t.phase.startsWith('J-7') },
-    { offset: 0, name: 'Jour J · Déménagement', cat: 'logistique', filter: t => t.phase === 'Jour J' },
-    { offset: 8, name: 'J+8 · Démarches finales', cat: 'admin', filter: t => t.phase.startsWith('J+8') }
+    { offset: -30, name: 'J-30 · Préparation', filter: t => t.phase.startsWith('J-30') },
+    { offset: -15, name: 'J-15 · Démarches admin', filter: t => t.phase.startsWith('J-15') },
+    { offset: -7, name: 'J-7 · Emballage', filter: t => t.phase.startsWith('J-7') },
+    { offset: 0, name: 'Jour J · Déménagement', filter: t => t.phase === 'Jour J' },
+    { offset: 8, name: 'J+8 · Démarches finales', filter: t => t.phase.startsWith('J+8') }
   ];
   const stamp = icsDate(new Date()) + 'T120000Z';
   const allT = getAllTasks();
@@ -1182,9 +1534,8 @@ function exportICS() {
     const end = addDays(state.date, m.offset + 1);
     const tasks = allT.filter(m.filter).map(t => '• ' + t.text + ' [' + WHO_LABEL[t.person] + ']').join('\\n');
     const summary = m.offset === 0 ? 'Déménagement Gare → Bettembourg' : m.name;
-    return [
-      'BEGIN:VEVENT',
-      'UID:demenagement-' + i + '-' + Date.now() + '@paul-planner',
+    return ['BEGIN:VEVENT',
+      'UID:demenagement-' + i + '-' + Date.now() + '@paul-johanna',
       'DTSTAMP:' + stamp,
       'DTSTART;VALUE=DATE:' + icsDate(start),
       'DTEND;VALUE=DATE:' + icsDate(end),
@@ -1192,95 +1543,71 @@ function exportICS() {
       'DESCRIPTION:' + icsEscape(m.name + '\n\n' + tasks.replace(/\\n/g, '\n')),
       'CATEGORIES:DEMENAGEMENT',
       m.offset === 8 ? 'PRIORITY:1' : 'PRIORITY:5',
-      'END:VEVENT'
-    ].join('\r\n');
+      'END:VEVENT'].join('\r\n');
   });
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Paul Planner//Demenagement//FR',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'X-WR-CALNAME:Déménagement Gare → Bettembourg',
-    'X-WR-TIMEZONE:Europe/Luxembourg',
-    ...events,
-    'END:VCALENDAR'
-  ].join('\r\n');
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Paul Planner//Demenagement//FR',
+    'CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Déménagement Gare → Bettembourg',
+    'X-WR-TIMEZONE:Europe/Luxembourg', ...events, 'END:VCALENDAR'].join('\r\n');
   downloadFile('demenagement-jalons.ics', ics, 'text/calendar;charset=utf-8;');
-  showToast('Calendrier téléchargé · importe-le dans ton agenda');
+  showToast('Calendrier téléchargé');
 }
 
-// ============== PDF EXPORT ==============
+// ============== PDF ==============
 function exportPDF() {
-  if (!window.jspdf) { showToast('Bibliothèque PDF non chargée — vérifie ta connexion'); return; }
+  if (!window.jspdf) { showToast('Bibliothèque PDF non chargée'); return; }
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
   const W = 210, H = 297;
   let y = 0;
 
-  // Cover
-  doc.setFillColor(26, 24, 20);
-  doc.rect(0, 0, W, 70, 'F');
-  doc.setTextColor(250, 247, 242);
+  doc.setFillColor(245, 241, 234);
+  doc.rect(0, 0, W, 60, 'F');
+  doc.setFillColor(232, 184, 106);
+  doc.rect(0, 60, W, 8, 'F');
+
+  doc.setTextColor(45, 42, 36);
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
-  doc.text('PLANIFICATEUR DE DÉMÉNAGEMENT · LUXEMBOURG', 20, 22);
-  doc.setFont('times', 'normal');
-  doc.setFontSize(28);
-  doc.text('Gare', 20, 45);
-  doc.setTextColor(216, 90, 48);
-  doc.setFont('times', 'italic');
-  doc.text('→', 53, 45);
-  doc.setTextColor(250, 247, 242);
-  doc.setFont('times', 'normal');
-  doc.text('Bettembourg', 65, 45);
-  doc.setFontSize(10);
+  doc.text('PLANIFICATEUR · LUXEMBOURG', 20, 22);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.text('Gare → Bettembourg', 20, 38);
   doc.setFont('helvetica', 'normal');
-  if (state.date) {
-    doc.text('Jour J : ' + fmtDateFR(state.date), 20, 60);
-  } else {
-    doc.text('Jour J : à définir', 20, 60);
-  }
-  doc.text('Édité le ' + fmtDateFR(new Date()), 20, 65);
+  doc.setFontSize(10);
+  doc.text('Paul & Johanna', 20, 48);
+  doc.setFontSize(9);
+  if (state.date) doc.text('Jour J : ' + fmtDateFR(state.date), 20, 54);
 
-  y = 85;
-  doc.setTextColor(26, 24, 20);
+  y = 80;
 
-  // Progress
   const allTasks = getAllTasks();
   const allIds = new Set(allTasks.map(t => t.id));
   const done = Object.entries(state.checks).filter(([id, v]) => v && allIds.has(id)).length;
   const totalT = allTasks.length;
-  doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
-  doc.text('Progression : ' + done + '/' + totalT + ' tâches (' + Math.round(done/Math.max(totalT,1)*100) + '%)', 20, y);
+  doc.text('Progression : ' + done + '/' + totalT + ' (' + Math.round(done/Math.max(totalT,1)*100) + '%)', 20, y);
   y += 4;
-  doc.setDrawColor(221, 215, 203);
-  doc.setLineWidth(0.5);
-  doc.line(20, y, W - 20, y);
-  doc.setDrawColor(31, 58, 147);
-  doc.setLineWidth(2);
-  doc.line(20, y, 20 + (W - 40) * (done / Math.max(totalT, 1)), y);
+  doc.setDrawColor(232, 226, 212);
+  doc.setLineWidth(0.5); doc.line(20, y, W - 20, y);
+  doc.setDrawColor(143, 171, 117);
+  doc.setLineWidth(2); doc.line(20, y, 20 + (W - 40) * (done / Math.max(totalT, 1)), y);
   y += 12;
 
-  // Tasks
   const phaseOrder = [...new Set([...TASKS, ...state.customTasks].map(t => t.phase))];
   const phases = phaseOrder.filter(p => allTasks.some(t => t.phase === p));
   doc.setLineWidth(0.3);
   phases.forEach(p => {
     if (y > H - 30) { doc.addPage(); y = 25; }
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(92, 88, 81);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    doc.setTextColor(107, 99, 89);
     doc.text(p.toUpperCase(), 20, y);
     y += 2;
-    doc.setDrawColor(221, 215, 203);
-    doc.line(20, y, W - 20, y);
+    doc.setDrawColor(232, 226, 212); doc.line(20, y, W - 20, y);
     y += 5;
     const items = allTasks.filter(t => t.phase === p);
     items.forEach(t => {
       if (y > H - 20) { doc.addPage(); y = 25; }
-      doc.setDrawColor(150, 145, 135);
+      doc.setDrawColor(196, 188, 172);
       doc.rect(20, y - 3.5, 4, 4);
       if (state.checks[t.id]) {
         doc.setLineWidth(0.6);
@@ -1288,14 +1615,11 @@ function exportPDF() {
         doc.line(22, y - 0.2, 24, y - 3.2);
         doc.setLineWidth(0.3);
       }
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.setTextColor(state.checks[t.id] ? 144 : 26, state.checks[t.id] ? 139 : 24, state.checks[t.id] ? 130 : 20);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      doc.setTextColor(state.checks[t.id] ? 138 : 45, state.checks[t.id] ? 131 : 42, state.checks[t.id] ? 120 : 36);
       const lines = doc.splitTextToSize((t.custom ? '+ ' : '') + t.text, 130);
       doc.text(lines, 28, y);
-      // Person + category tags
-      doc.setFontSize(7);
-      doc.setTextColor(92, 88, 81);
+      doc.setFontSize(7); doc.setTextColor(107, 99, 89);
       const tagText = '[' + TAG_LABEL[t.cat] + ' · ' + WHO_LABEL[t.person] + ']';
       doc.text(tagText, W - 20 - doc.getTextWidth(tagText), y);
       y += lines.length * 4.5 + 2;
@@ -1303,34 +1627,25 @@ function exportPDF() {
     y += 4;
   });
 
-  // Boxes
   if (state.boxes.length) {
-    doc.addPage();
-    y = 25;
-    doc.setFont('times', 'normal');
-    doc.setFontSize(20);
-    doc.setTextColor(26, 24, 20);
+    doc.addPage(); y = 25;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+    doc.setTextColor(45, 42, 36);
     doc.text('Inventaire des cartons', 20, y);
     y += 4;
-    doc.setDrawColor(216, 90, 48);
-    doc.setLineWidth(0.6);
+    doc.setDrawColor(232, 184, 106); doc.setLineWidth(0.6);
     doc.line(20, y, 60, y);
     y += 10;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(92, 88, 81);
-    doc.text('N°', 20, y);
-    doc.text('PIÈCE', 35, y);
-    doc.text('CONTENU', 75, y);
-    doc.text('STATUT', 165, y);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    doc.setTextColor(107, 99, 89);
+    doc.text('N°', 20, y); doc.text('PIÈCE', 35, y);
+    doc.text('CONTENU', 75, y); doc.text('STATUT', 165, y);
     y += 2;
-    doc.setDrawColor(221, 215, 203);
-    doc.line(20, y, W - 20, y);
+    doc.setDrawColor(232, 226, 212); doc.line(20, y, W - 20, y);
     y += 5;
     const sorted = [...state.boxes].sort((a, b) => (parseInt(a.num) || 0) - (parseInt(b.num) || 0));
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.setTextColor(26, 24, 20);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(45, 42, 36);
     sorted.forEach(b => {
       if (y > H - 20) { doc.addPage(); y = 25; }
       doc.setFont('courier', 'normal');
@@ -1339,55 +1654,45 @@ function exportPDF() {
       doc.text(b.room, 35, y);
       const desc = doc.splitTextToSize(b.desc || '—', 85);
       doc.text(desc, 75, y);
-      doc.setFontSize(8);
-      doc.setTextColor(92, 88, 81);
+      doc.setFontSize(8); doc.setTextColor(107, 99, 89);
       doc.text(b.status === 'packed' ? 'Emballé' : b.status === 'unpacked' ? 'Déballé' : 'À emballer', 165, y);
-      doc.setFontSize(9);
-      doc.setTextColor(26, 24, 20);
+      doc.setFontSize(9); doc.setTextColor(45, 42, 36);
       y += Math.max(6, desc.length * 4.5);
     });
   }
 
-  // Contacts
-  doc.addPage();
-  y = 25;
-  doc.setFont('times', 'normal');
-  doc.setFontSize(20);
-  doc.setTextColor(26, 24, 20);
+  doc.addPage(); y = 25;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+  doc.setTextColor(45, 42, 36);
   doc.text('Contacts utiles', 20, y);
   y += 4;
-  doc.setDrawColor(216, 90, 48);
-  doc.setLineWidth(0.6);
+  doc.setDrawColor(232, 184, 106); doc.setLineWidth(0.6);
   doc.line(20, y, 60, y);
   y += 10;
   CONTACTS.forEach(g => {
     if (y > H - 30) { doc.addPage(); y = 25; }
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(92, 88, 81);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    doc.setTextColor(107, 99, 89);
     doc.text(g.group.toUpperCase(), 20, y);
     y += 2;
-    doc.setDrawColor(221, 215, 203);
-    doc.setLineWidth(0.3);
+    doc.setDrawColor(232, 226, 212); doc.setLineWidth(0.3);
     doc.line(20, y, W - 20, y);
     y += 5;
     g.items.forEach(c => {
       if (y > H - 20) { doc.addPage(); y = 25; }
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.setTextColor(26, 24, 20);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+      doc.setTextColor(45, 42, 36);
       doc.text(c.name, 20, y);
       y += 4;
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      doc.setTextColor(92, 88, 81);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+      doc.setTextColor(107, 99, 89);
       doc.text(c.meta, 20, y);
       if (c.url) {
         y += 4;
-        doc.setTextColor(31, 58, 147);
+        doc.setTextColor(42, 74, 107);
         doc.textWithLink(c.url.replace(/^https?:\/\//, ''), 20, y, { url: c.url });
       }
-      doc.setTextColor(26, 24, 20);
+      doc.setTextColor(45, 42, 36);
       y += 7;
     });
     y += 4;
@@ -1397,7 +1702,7 @@ function exportPDF() {
   showToast('PDF téléchargé');
 }
 
-// ============== LABEL PRINTING ==============
+// ============== LABELS ==============
 function makeQR(data) {
   if (!window.qrcode) return '';
   try {
@@ -1424,13 +1729,13 @@ function labelHTML(b, isLast) {
 
 function printLabels(boxes) {
   if (!boxes || !boxes.length) { showToast('Aucun carton à imprimer'); return; }
-  const html = '<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Étiquettes cartons</title><style>' +
+  const html = '<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Étiquettes</title><style>' +
     '@page { size: 80mm 50mm; margin: 0; }' +
     '* { box-sizing: border-box; }' +
     'html, body { margin: 0; padding: 0; background: white; color: black; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }' +
     '.label { width: 80mm; height: 50mm; padding: 4mm 5mm; display: grid; grid-template-columns: 30mm 1fr 22mm; gap: 3mm; align-items: stretch; page-break-after: always; overflow: hidden; }' +
     '.label.last { page-break-after: auto; }' +
-    '.num { font-family: Georgia, "Times New Roman", serif; font-size: 38pt; font-weight: bold; align-self: center; line-height: 1; letter-spacing: -0.04em; }' +
+    '.num { font-family: Georgia, serif; font-size: 38pt; font-weight: bold; align-self: center; line-height: 1; letter-spacing: -0.04em; }' +
     '.info { display: flex; flex-direction: column; justify-content: space-between; padding: 1mm 0; min-width: 0; }' +
     '.room { font-size: 13pt; font-weight: bold; line-height: 1.1; }' +
     '.desc { font-size: 8.5pt; line-height: 1.25; flex: 1; padding: 1mm 0; overflow: hidden; }' +
@@ -1441,23 +1746,16 @@ function printLabels(boxes) {
     boxes.map((b, i) => labelHTML(b, i === boxes.length - 1)).join('') +
     '</body></html>';
 
-  // Remove any previous print iframe
   const old = document.getElementById('print-frame');
   if (old) old.remove();
-
-  // Create hidden iframe — no popup blocker, works on iOS/Android/desktop
   const iframe = document.createElement('iframe');
   iframe.id = 'print-frame';
   iframe.setAttribute('aria-hidden', 'true');
   iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;';
   document.body.appendChild(iframe);
-
   const doc = iframe.contentWindow.document;
-  doc.open();
-  doc.write(html);
-  doc.close();
+  doc.open(); doc.write(html); doc.close();
 
-  // Wait for content (and SVG QR codes) to be ready, then trigger print
   const triggerPrint = () => {
     try {
       document.body.classList.add('printing-labels');
@@ -1467,7 +1765,6 @@ function printLabels(boxes) {
     } catch (e) {
       showToast('Erreur impression : ' + e.message);
     }
-    // Cleanup after the print dialog closes
     setTimeout(() => {
       document.body.classList.remove('printing-labels');
       try { iframe.remove(); } catch (e) {}
@@ -1475,22 +1772,20 @@ function printLabels(boxes) {
   };
 
   if (iframe.contentWindow.document.readyState === 'complete') {
-    setTimeout(triggerPrint, 250);
+    setTimeout(triggerPrint, 300);
   } else {
-    iframe.addEventListener('load', () => setTimeout(triggerPrint, 250), { once: true });
+    iframe.addEventListener('load', () => setTimeout(triggerPrint, 300), { once: true });
   }
 }
 
-// ============== DYMO PROXY ==============
+// ============== DYMO ==============
 async function sendToDymo(b) {
   const url = (state.settings.dymoEndpoint || '').trim();
   if (!url) { showToast('Configure l\'endpoint DYMO dans Outils'); return; }
   showToast('Envoi à DYMO…');
   try {
     const payload = {
-      num: b.num,
-      room: b.room,
-      desc: b.desc || '',
+      num: b.num, room: b.room, desc: b.desc || '',
       date: state.date || null,
       qr: JSON.stringify({ n: b.num, r: b.room, d: b.desc })
     };
@@ -1500,13 +1795,126 @@ async function sendToDymo(b) {
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    showToast('Étiquette envoyée à DYMO');
+    showToast('Étiquette envoyée');
+  } catch (e) { showToast('Erreur DYMO : ' + e.message); }
+}
+
+// ============== QR SCANNER ==============
+function findBoxFromScan(text) {
+  // Try to parse as JSON {n: 14, r: "Cuisine", d: "..."}
+  try {
+    const data = JSON.parse(text);
+    if (data && data.n != null) {
+      return state.boxes.find(b => String(b.num) === String(data.n));
+    }
+  } catch (e) {}
+  // Fallback: try as plain box number
+  const n = parseInt(text, 10);
+  if (!isNaN(n)) return state.boxes.find(b => parseInt(b.num) === n);
+  return null;
+}
+
+function showScanResult(box, raw) {
+  const el = document.getElementById('scan-result');
+  el.classList.remove('error');
+  if (!box) {
+    el.innerHTML = '⚠️ Aucun carton trouvé pour ce QR. Données : <code style="font-size: 11px;">' + escapeHtml(raw).slice(0, 80) + '</code>';
+    el.classList.add('error');
+    el.classList.add('show');
+    return;
+  }
+  const statusLabel = box.status === 'packed' ? 'Emballé' : box.status === 'unpacked' ? 'Déballé' : 'À emballer';
+  const nextLabel = box.status === 'packed' ? 'Marquer déballé' : box.status === 'unpacked' ? 'Marquer à emballer' : 'Marquer emballé';
+  el.innerHTML = '<div style="display: flex; flex-direction: column; gap: 6px;">' +
+    '<div><strong>✓ Carton #' + escapeHtml(box.num) + '</strong> — ' + escapeHtml(box.room) + ' · ' + statusLabel + '</div>' +
+    (box.desc ? '<div style="font-size: 12px; opacity: 0.85;">' + escapeHtml(box.desc) + '</div>' : '') +
+    '<button class="btn-primary" id="scan-cycle-status" style="margin-top: 4px; align-self: flex-start;">' + nextLabel + '</button>' +
+    '</div>';
+  el.classList.add('show');
+  // Wire the button
+  setTimeout(() => {
+    const btn = document.getElementById('scan-cycle-status');
+    if (btn) btn.addEventListener('click', () => {
+      box.status = box.status === 'todo' ? 'packed' : box.status === 'packed' ? 'unpacked' : 'todo';
+      save.boxes(); renderBoxes(); renderStats();
+      showScanResult(box, raw);
+      showToast('Statut mis à jour');
+    });
+  }, 50);
+}
+
+async function startScanner() {
+  if (!window.Html5Qrcode) { showToast('Module scanner non chargé'); return; }
+  const view = document.getElementById('scanner-view');
+  const reader = document.getElementById('qr-reader');
+  view.classList.remove('empty');
+  reader.style.display = 'block';
+  document.getElementById('scan-start').style.display = 'none';
+  document.getElementById('scan-stop').style.display = 'block';
+
+  try {
+    qrScanner = new Html5Qrcode('qr-reader');
+    await qrScanner.start(
+      { facingMode: 'environment' },
+      { fps: 10, qrbox: { width: 220, height: 220 } },
+      (decodedText) => {
+        // Found QR
+        const box = findBoxFromScan(decodedText);
+        showScanResult(box, decodedText);
+        if (box) {
+          if (navigator.vibrate) navigator.vibrate(100);
+        }
+      },
+      () => { /* ignore decode errors per frame */ }
+    );
   } catch (e) {
-    showToast('Erreur DYMO : ' + e.message);
+    showToast('Caméra inaccessible : ' + e.message);
+    stopScanner();
   }
 }
 
-// ============== INSTALL PROMPT ==============
+async function stopScanner() {
+  if (qrScanner) {
+    try { await qrScanner.stop(); await qrScanner.clear(); } catch (e) {}
+    qrScanner = null;
+  }
+  document.getElementById('scanner-view').classList.add('empty');
+  document.getElementById('qr-reader').style.display = 'none';
+  document.getElementById('scan-start').style.display = 'block';
+  document.getElementById('scan-stop').style.display = 'none';
+}
+
+// ============== SEARCH ==============
+function renderSearch() {
+  const q = document.getElementById('search-input').value.trim().toLowerCase();
+  const root = document.getElementById('search-results');
+  if (!q) {
+    if (!state.boxes.length) {
+      root.innerHTML = '<div class="search-empty">Ajoute d\'abord des cartons.</div>';
+    } else {
+      root.innerHTML = '<div class="search-empty">Tape un mot-clé pour chercher dans les ' + state.boxes.length + ' carton' + (state.boxes.length > 1 ? 's' : '') + '.</div>';
+    }
+    return;
+  }
+  const matches = state.boxes.filter(b =>
+    (b.desc || '').toLowerCase().includes(q) ||
+    (b.room || '').toLowerCase().includes(q) ||
+    String(b.num).includes(q)
+  ).sort((a, b) => (parseInt(a.num) || 0) - (parseInt(b.num) || 0));
+  if (!matches.length) {
+    root.innerHTML = '<div class="search-empty">Aucun résultat pour « ' + escapeHtml(q) + ' ».</div>';
+    return;
+  }
+  root.innerHTML = matches.map(b =>
+    '<div class="search-result">' +
+      '<span class="num">#' + escapeHtml(b.num) + '</span>' +
+      '<span class="room">' + escapeHtml(b.room) + '</span>' +
+      '<span class="desc">' + escapeHtml(b.desc || '—') + '</span>' +
+    '</div>'
+  ).join('');
+}
+
+// ============== INSTALL ==============
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
@@ -1515,16 +1923,13 @@ window.addEventListener('beforeinstallprompt', e => {
 window.addEventListener('appinstalled', () => {
   document.getElementById('install-btn').classList.add('hidden');
   deferredPrompt = null;
-  showToast('App installée — retrouve-la sur ton écran d\'accueil');
+  showToast('App installée');
 });
 
 // ============== THEME ==============
 function applyTheme(theme) {
-  if (theme === 'auto') {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
-    document.documentElement.setAttribute('data-theme', theme);
-  }
+  if (theme === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', theme);
   try { localStorage.setItem(STORAGE.theme, theme); } catch (e) {}
 }
 
@@ -1544,9 +1949,7 @@ function init() {
   if (state.settings.dymoEndpoint) document.getElementById('dymo-endpoint').value = state.settings.dymoEndpoint;
 
   document.getElementById('move-date').addEventListener('change', e => {
-    state.date = e.target.value;
-    save.date();
-    renderStats();
+    state.date = e.target.value; save.date(); renderStats();
   });
 
   document.getElementById('theme-btn').addEventListener('click', cycleTheme);
@@ -1555,9 +1958,7 @@ function init() {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      document.getElementById('install-btn').classList.add('hidden');
-    }
+    if (outcome === 'accepted') document.getElementById('install-btn').classList.add('hidden');
     deferredPrompt = null;
   });
 
@@ -1566,26 +1967,30 @@ function init() {
       const id = tab.dataset.tab;
       document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
       document.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + id));
+      // Stop scanner when leaving scan tab
+      if (id !== 'scan' && qrScanner) stopScanner();
+      // Refresh search if entering scan tab
+      if (id === 'scan') renderSearch();
     });
   });
 
-  document.querySelectorAll('#cat-filters .pill').forEach(btn => {
+  document.querySelectorAll('#cat-filters .cat-pill').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#cat-filters .pill').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('#cat-filters .cat-pill').forEach(b => b.classList.toggle('active', b === btn));
       state.filter = btn.dataset.cat;
       renderChecklist();
     });
   });
 
-  document.querySelectorAll('#who-filters .pill').forEach(btn => {
+  document.querySelectorAll('#who-chips .who-chip').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#who-filters .pill').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('#who-chips .who-chip').forEach(b => b.classList.toggle('muted', b !== btn));
       state.whoFilter = btn.dataset.who;
       renderChecklist();
     });
   });
 
-  // Add task form toggle + submit
+  // Add task form
   const addForm = document.getElementById('add-task-form');
   const showAddBtn = document.getElementById('show-add-task');
   const ntText = document.getElementById('nt-text');
@@ -1612,10 +2017,8 @@ function init() {
     ntText.value = '';
     addForm.classList.remove('open');
     showAddBtn.style.display = '';
-    renderChecklist();
-    renderStats();
-    updateBadges();
-    showToast('Tâche ajoutée : « ' + text + ' »');
+    renderChecklist(); renderStats(); updateBadges();
+    showToast('Tâche ajoutée');
   }
   document.getElementById('nt-add').addEventListener('click', submitAddTask);
   ntText.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); submitAddTask(); } });
@@ -1627,7 +2030,6 @@ function init() {
   numIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addBox(); } });
   descIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addBox(); } });
 
-  // Box actions
   document.getElementById('print-all-labels').addEventListener('click', () => {
     if (!state.boxes.length) { showToast('Aucun carton enregistré'); return; }
     const sorted = [...state.boxes].sort((a, b) => (parseInt(a.num) || 0) - (parseInt(b.num) || 0));
@@ -1635,7 +2037,6 @@ function init() {
   });
   document.getElementById('export-boxes-csv').addEventListener('click', exportBoxesCSV);
 
-  // Tools
   document.getElementById('export-pdf').addEventListener('click', exportPDF);
   document.getElementById('export-ics').addEventListener('click', exportICS);
   document.getElementById('print-labels-tools').addEventListener('click', () => {
@@ -1648,30 +2049,32 @@ function init() {
   const dymoIn = document.getElementById('dymo-endpoint');
   dymoIn.addEventListener('change', () => {
     state.settings.dymoEndpoint = dymoIn.value.trim();
-    save.settings();
-    renderBoxes();
+    save.settings(); renderBoxes();
     showToast('Endpoint sauvegardé');
   });
 
+  // Scanner
+  document.getElementById('scan-start').addEventListener('click', startScanner);
+  document.getElementById('scan-stop').addEventListener('click', stopScanner);
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', renderSearch);
+
   // Reset
   document.getElementById('reset-all').addEventListener('click', () => {
-    if (!confirm('Tout réinitialiser ? Checklist, cartons, tâches personnalisées, date et réglages seront effacés.')) return;
+    if (!confirm('Tout réinitialiser ? Checklist, cartons, tâches personnalisées et réglages seront effacés.')) return;
     state = { checks: {}, boxes: [], date: '', filter: 'all', whoFilter: 'all', settings: { dymoEndpoint: '' }, assignments: {}, customTasks: [] };
     Object.values(STORAGE).forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
     document.getElementById('move-date').value = '';
     document.getElementById('dymo-endpoint').value = '';
-    document.querySelectorAll('#cat-filters .pill').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
-    document.querySelectorAll('#who-filters .pill').forEach(b => b.classList.toggle('active', b.dataset.who === 'all'));
+    document.querySelectorAll('#cat-filters .cat-pill').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+    document.querySelectorAll('#who-chips .who-chip').forEach(b => b.classList.toggle('muted', b.dataset.who !== 'all'));
     renderChecklist(); renderBoxes(); renderContacts(); renderStats(); updateBadges();
     showToast('Tout a été réinitialisé');
   });
 
-  // Initial render
-  renderChecklist();
-  renderBoxes();
-  renderContacts();
-  renderStats();
-  updateBadges();
+  renderChecklist(); renderBoxes(); renderContacts(); renderStats(); updateBadges();
+  renderSearch();
 }
 
 if (document.readyState === 'loading') {
