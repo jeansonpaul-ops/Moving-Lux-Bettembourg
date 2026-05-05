@@ -16,6 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 <style>
 :root {
   /* Soft, harmonious palette — earthy/botanical */
@@ -790,6 +792,120 @@ body {
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
+/* ===== IDENTITY SCREEN ===== */
+.identity-screen {
+  position: fixed; inset: 0;
+  background: var(--bg-soft);
+  z-index: 2000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 32px 20px;
+}
+.identity-screen.hidden { display: none; }
+.identity-icon {
+  width: 64px; height: 64px;
+  background: var(--amber); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.identity-icon svg { width: 36px; height: 36px; }
+.identity-eyebrow {
+  font-size: 12px; color: var(--ink-2);
+  margin: 0 0 4px; font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.identity-title {
+  font-size: 24px; font-weight: 500;
+  color: var(--ink); margin: 0 0 6px;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.identity-sub {
+  font-size: 14px; color: var(--ink-2);
+  margin: 0 0 28px; text-align: center;
+  max-width: 320px; line-height: 1.5;
+}
+.identity-buttons {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center;
+}
+.identity-btn {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  padding: 22px 32px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+  min-width: 130px;
+}
+.identity-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.identity-btn-paul:hover { border-color: var(--paul); background: var(--paul-bg); }
+.identity-btn-johanna:hover { border-color: var(--johanna); background: var(--johanna-bg); }
+.identity-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 600; font-size: 22px;
+}
+.identity-avatar.paul { background: var(--paul); }
+.identity-avatar.johanna { background: var(--johanna); }
+.identity-name {
+  font-size: 16px; font-weight: 500;
+  color: var(--ink);
+}
+
+/* ===== SYNC STATUS INDICATOR ===== */
+.sync-pill {
+  display: inline-flex; align-items: center;
+  gap: 6px; padding: 4px 10px 4px 7px;
+  border-radius: 999px; font-size: 11px;
+  font-weight: 500; cursor: pointer;
+  border: none; font-family: inherit;
+  transition: opacity .15s;
+}
+.sync-pill:hover { opacity: 0.85; }
+.sync-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.sync-pill.connected { background: var(--sage-bg); color: var(--sage-ink); }
+.sync-pill.connected .sync-dot { background: var(--sage); }
+.sync-pill.syncing { background: var(--amber-bg); color: var(--amber-ink); }
+.sync-pill.syncing .sync-dot {
+  background: var(--amber-deep);
+  animation: sync-pulse 1.2s ease-in-out infinite;
+}
+.sync-pill.offline { background: var(--terracotta-bg); color: var(--terracotta-ink); }
+.sync-pill.offline .sync-dot { background: var(--terracotta-ink); }
+@keyframes sync-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.4); }
+}
+.user-pill {
+  display: inline-flex; align-items: center;
+  gap: 6px; padding: 4px 10px 4px 4px;
+  border-radius: 999px; font-size: 12px;
+  font-weight: 500; cursor: pointer;
+  border: none; font-family: inherit;
+  background: var(--bg);
+  color: var(--ink);
+  border: 0.5px solid var(--line);
+  transition: all .15s;
+}
+.user-pill:hover { border-color: var(--line-strong); }
+.user-pill-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  color: white; font-weight: 600; font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.user-pill-avatar.paul { background: var(--paul); }
+.user-pill-avatar.johanna { background: var(--johanna); }
+
 /* ===== CONFETTI / CELEBRATION ===== */
 .confetti {
   position: fixed; pointer-events: none;
@@ -873,6 +989,28 @@ footer .reset:hover { color: var(--terracotta-ink); }
 </style>
 </head>
 <body>
+<div class="identity-screen" id="identity-screen">
+  <div class="identity-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#3D2A0A" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/>
+      <path d="M3 7l9 4 9-4M12 11v10"/>
+    </svg>
+  </div>
+  <p class="identity-eyebrow">Notre déménagement</p>
+  <h1 class="identity-title">Gare → Bettembourg</h1>
+  <p class="identity-sub">Qui es-tu ? On synchronise toutes les modifs entre les deux téléphones.</p>
+  <div class="identity-buttons">
+    <button class="identity-btn identity-btn-paul" data-user="paul">
+      <div class="identity-avatar paul">P</div>
+      <div class="identity-name">Je suis Paul</div>
+    </button>
+    <button class="identity-btn identity-btn-johanna" data-user="johanna">
+      <div class="identity-avatar johanna">J</div>
+      <div class="identity-name">Je suis Johanna</div>
+    </button>
+  </div>
+</div>
+
 <div class="shell">
 
   <div class="header-card">
@@ -920,6 +1058,13 @@ footer .reset:hover { color: var(--terracotta-ink); }
   </div>
 
   <div class="head-actions">
+    <button class="sync-pill connected" id="sync-pill" title="État de la synchronisation">
+      <span class="sync-dot"></span><span id="sync-text">Connecté</span>
+    </button>
+    <button class="user-pill" id="user-pill" title="Changer d'utilisateur">
+      <span class="user-pill-avatar paul" id="user-pill-avatar">P</span>
+      <span id="user-pill-name">Paul</span>
+    </button>
     <button class="btn-install hidden" id="install-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Installer
@@ -1089,7 +1234,7 @@ footer .reset:hover { color: var(--terracotta-ink); }
   </section>
 
   <footer>
-    <span>Données stockées localement · v2.0.0</span>
+    <span>Données synchronisées via Firebase · v3.0.0</span>
     <button class="reset" id="reset-all">Tout réinitialiser</button>
   </footer>
 </div>
@@ -1165,14 +1310,25 @@ const WHO_LABEL = { both: 'PJ', paul: 'P', johanna: 'J', none: '?' };
 const WHO_FULL = { both: 'Paul & Johanna', paul: 'Paul', johanna: 'Johanna', none: 'Non assignée' };
 
 const STORAGE = {
-  checks: 'demenagement.checks',
-  boxes: 'demenagement.boxes',
-  date: 'demenagement.date',
-  settings: 'demenagement.settings',
   theme: 'demenagement.theme',
-  assignments: 'demenagement.assignments',
-  customTasks: 'demenagement.customTasks'
+  user: 'demenagement.user'
 };
+
+// ============== FIREBASE CONFIG ==============
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAvSatrvm5MDunjoTSBahK4PV9qaPQuUR8",
+  authDomain: "moving-7a506.firebaseapp.com",
+  projectId: "moving-7a506",
+  storageBucket: "moving-7a506.firebasestorage.app",
+  messagingSenderId: "894537780845",
+  appId: "1:894537780845:web:cd481630d98bba0fd9b964"
+};
+const MOVE_ID = 'demenagement-bettembourg';
+
+let db = null;
+let unsubscribe = null;
+let isSyncing = false;
+let lastSnapshotData = null;
 
 // ============== STATE ==============
 let state = {
@@ -1183,28 +1339,195 @@ let state = {
   whoFilter: 'all',
   settings: { dymoEndpoint: '' },
   assignments: {},
-  customTasks: []
+  customTasks: [],
+  user: null  // 'paul' | 'johanna' | null
 };
 let deferredPrompt = null;
 let qrScanner = null;
 
-function loadState() {
-  try { const c = localStorage.getItem(STORAGE.checks); if (c) state.checks = JSON.parse(c); } catch (e) {}
-  try { const b = localStorage.getItem(STORAGE.boxes); if (b) state.boxes = JSON.parse(b); } catch (e) {}
-  try { const d = localStorage.getItem(STORAGE.date); if (d) state.date = d; } catch (e) {}
-  try { const s = localStorage.getItem(STORAGE.settings); if (s) state.settings = Object.assign(state.settings, JSON.parse(s)); } catch (e) {}
-  try { const a = localStorage.getItem(STORAGE.assignments); if (a) state.assignments = JSON.parse(a); } catch (e) {}
-  try { const ct = localStorage.getItem(STORAGE.customTasks); if (ct) state.customTasks = JSON.parse(ct); } catch (e) {}
+// ============== FIRESTORE ==============
+function initFirebase() {
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+    // Enable offline persistence (works on most browsers, not on Safari iOS in some cases)
+    db.enablePersistence({ synchronizeTabs: true }).catch(err => {
+      // Multi-tab or unsupported → silent fail, app still works online
+      console.warn('Persistance offline non disponible:', err.code);
+    });
+    return true;
+  } catch (e) {
+    console.error('Firebase init failed:', e);
+    return false;
+  }
 }
 
+function setSyncStatus(status, label) {
+  const pill = document.getElementById('sync-pill');
+  const text = document.getElementById('sync-text');
+  pill.classList.remove('connected', 'syncing', 'offline');
+  pill.classList.add(status);
+  text.textContent = label;
+}
+
+function startSync() {
+  if (!db) return;
+  setSyncStatus('syncing', 'Connexion…');
+  const docRef = db.collection('moves').doc(MOVE_ID);
+
+  unsubscribe = docRef.onSnapshot({ includeMetadataChanges: true }, (snap) => {
+    const fromCache = snap.metadata.fromCache;
+    const hasPendingWrites = snap.metadata.hasPendingWrites;
+
+    if (fromCache && !navigator.onLine) {
+      setSyncStatus('offline', 'Hors-ligne');
+    } else if (hasPendingWrites) {
+      setSyncStatus('syncing', 'Sync…');
+    } else {
+      setSyncStatus('connected', 'Synchronisé');
+    }
+
+    if (snap.exists) {
+      const data = snap.data();
+      // Only re-render if it's a real change (not our own write echo with same data)
+      const newJson = JSON.stringify(data);
+      if (newJson !== lastSnapshotData) {
+        const previousChecks = state.checks;
+        const previousBoxes = state.boxes;
+        lastSnapshotData = newJson;
+        state.checks = data.checks || {};
+        state.boxes = data.boxes || [];
+        state.date = data.date || '';
+        state.assignments = data.assignments || {};
+        state.customTasks = data.customTasks || [];
+
+        // Detect remote changes from the OTHER user
+        if (!hasPendingWrites && lastSnapshotData) {
+          detectRemoteChanges(previousChecks, previousBoxes, data);
+        }
+
+        // Re-render UI
+        document.getElementById('move-date').value = state.date;
+        renderChecklist(); renderBoxes(); renderStats(); updateBadges(); renderSearch();
+      }
+    } else {
+      // Doc doesn't exist yet — create it
+      saveToFirestore();
+    }
+  }, (err) => {
+    console.error('Snapshot error:', err);
+    setSyncStatus('offline', 'Erreur sync');
+    showToast('Erreur de synchronisation : ' + err.code);
+  });
+
+  window.addEventListener('online', () => {
+    setSyncStatus('connected', 'Synchronisé');
+  });
+  window.addEventListener('offline', () => {
+    setSyncStatus('offline', 'Hors-ligne');
+  });
+}
+
+function detectRemoteChanges(prevChecks, prevBoxes, newData) {
+  const otherUser = state.user === 'paul' ? 'johanna' : 'paul';
+  const otherName = state.user === 'paul' ? 'Johanna' : 'Paul';
+  // New box added?
+  const newBoxes = (newData.boxes || []).filter(nb => !prevBoxes.find(pb => pb.id === nb.id));
+  if (newBoxes.length === 1) {
+    showToast(otherName + ' a ajouté le carton #' + newBoxes[0].num);
+    return;
+  }
+  if (newBoxes.length > 1) {
+    showToast(otherName + ' a ajouté ' + newBoxes.length + ' cartons');
+    return;
+  }
+  // Newly checked task?
+  const newChecks = newData.checks || {};
+  const newlyChecked = Object.keys(newChecks).filter(id => newChecks[id] && !prevChecks[id]);
+  if (newlyChecked.length === 1) {
+    const allTasks = [...TASKS, ...(newData.customTasks || [])];
+    const task = allTasks.find(t => t.id === newlyChecked[0]);
+    if (task) showToast(otherName + ' a coché : ' + task.text.slice(0, 50) + (task.text.length > 50 ? '…' : ''));
+  } else if (newlyChecked.length > 1) {
+    showToast(otherName + ' a coché ' + newlyChecked.length + ' tâches');
+  }
+}
+
+async function saveToFirestore() {
+  if (!db) return;
+  isSyncing = true;
+  setSyncStatus('syncing', 'Sync…');
+  try {
+    const payload = {
+      checks: state.checks,
+      boxes: state.boxes,
+      date: state.date,
+      assignments: state.assignments,
+      customTasks: state.customTasks,
+      lastModifiedBy: state.user,
+      lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    await db.collection('moves').doc(MOVE_ID).set(payload, { merge: true });
+    lastSnapshotData = JSON.stringify(payload);
+  } catch (e) {
+    console.error('Save failed:', e);
+    showToast('Erreur sauvegarde : ' + e.code);
+  } finally {
+    isSyncing = false;
+  }
+}
+
+// Debounced save to avoid hammering Firestore on rapid edits
+let saveTimer = null;
+function scheduleSave() {
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveToFirestore, 300);
+}
+
+// ============== STATE PERSISTENCE (replaces localStorage save object) ==============
 const save = {
-  checks: () => { try { localStorage.setItem(STORAGE.checks, JSON.stringify(state.checks)); } catch (e) {} },
-  boxes: () => { try { localStorage.setItem(STORAGE.boxes, JSON.stringify(state.boxes)); } catch (e) {} },
-  date: () => { try { localStorage.setItem(STORAGE.date, state.date); } catch (e) {} },
-  settings: () => { try { localStorage.setItem(STORAGE.settings, JSON.stringify(state.settings)); } catch (e) {} },
-  assignments: () => { try { localStorage.setItem(STORAGE.assignments, JSON.stringify(state.assignments)); } catch (e) {} },
-  customTasks: () => { try { localStorage.setItem(STORAGE.customTasks, JSON.stringify(state.customTasks)); } catch (e) {} }
+  checks: scheduleSave,
+  boxes: scheduleSave,
+  date: scheduleSave,
+  settings: () => {
+    // Settings are local only (DYMO endpoint differs per machine)
+    try { localStorage.setItem('demenagement.settings', JSON.stringify(state.settings)); } catch (e) {}
+  },
+  assignments: scheduleSave,
+  customTasks: scheduleSave
 };
+
+function loadLocalSettings() {
+  try {
+    const s = localStorage.getItem('demenagement.settings');
+    if (s) state.settings = Object.assign(state.settings, JSON.parse(s));
+  } catch (e) {}
+  try {
+    state.user = localStorage.getItem(STORAGE.user) || null;
+  } catch (e) {}
+}
+
+// ============== IDENTITY ==============
+function setUser(user) {
+  state.user = user;
+  try { localStorage.setItem(STORAGE.user, user); } catch (e) {}
+  document.getElementById('identity-screen').classList.add('hidden');
+  updateUserPill();
+}
+
+function updateUserPill() {
+  if (!state.user) return;
+  const avatar = document.getElementById('user-pill-avatar');
+  const name = document.getElementById('user-pill-name');
+  avatar.classList.remove('paul', 'johanna');
+  avatar.classList.add(state.user);
+  avatar.textContent = state.user === 'paul' ? 'P' : 'J';
+  name.textContent = state.user === 'paul' ? 'Paul' : 'Johanna';
+}
+
+function changeUser() {
+  document.getElementById('identity-screen').classList.remove('hidden');
+}
 
 // ============== UTILS ==============
 function escapeHtml(s) {
@@ -1942,10 +2265,32 @@ function cycleTheme() {
 
 // ============== INIT ==============
 function init() {
-  loadState();
+  loadLocalSettings();
   applyTheme(localStorage.getItem(STORAGE.theme) || 'auto');
 
-  if (state.date) document.getElementById('move-date').value = state.date;
+  // Identity screen flow
+  if (!state.user) {
+    document.getElementById('identity-screen').classList.remove('hidden');
+  } else {
+    document.getElementById('identity-screen').classList.add('hidden');
+    updateUserPill();
+  }
+  document.querySelectorAll('.identity-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setUser(btn.dataset.user);
+      // First time? Init Firebase + sync now
+      if (!db) {
+        if (initFirebase()) startSync();
+      }
+    });
+  });
+  document.getElementById('user-pill').addEventListener('click', changeUser);
+
+  // Init Firebase if user already known
+  if (state.user) {
+    if (initFirebase()) startSync();
+  }
+
   if (state.settings.dymoEndpoint) document.getElementById('dymo-endpoint').value = state.settings.dymoEndpoint;
 
   document.getElementById('move-date').addEventListener('change', e => {
@@ -1967,9 +2312,7 @@ function init() {
       const id = tab.dataset.tab;
       document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
       document.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + id));
-      // Stop scanner when leaving scan tab
       if (id !== 'scan' && qrScanner) stopScanner();
-      // Refresh search if entering scan tab
       if (id === 'scan') renderSearch();
     });
   });
@@ -2045,7 +2388,6 @@ function init() {
     printLabels(sorted);
   });
 
-  // Settings
   const dymoIn = document.getElementById('dymo-endpoint');
   dymoIn.addEventListener('change', () => {
     state.settings.dymoEndpoint = dymoIn.value.trim();
@@ -2053,28 +2395,29 @@ function init() {
     showToast('Endpoint sauvegardé');
   });
 
-  // Scanner
   document.getElementById('scan-start').addEventListener('click', startScanner);
   document.getElementById('scan-stop').addEventListener('click', stopScanner);
-
-  // Search
   document.getElementById('search-input').addEventListener('input', renderSearch);
 
-  // Reset
-  document.getElementById('reset-all').addEventListener('click', () => {
-    if (!confirm('Tout réinitialiser ? Checklist, cartons, tâches personnalisées et réglages seront effacés.')) return;
-    state = { checks: {}, boxes: [], date: '', filter: 'all', whoFilter: 'all', settings: { dymoEndpoint: '' }, assignments: {}, customTasks: [] };
-    Object.values(STORAGE).forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+  document.getElementById('reset-all').addEventListener('click', async () => {
+    if (!confirm('Tout réinitialiser ? Cela effacera la base partagée pour Paul ET Johanna.')) return;
+    state.checks = {}; state.boxes = []; state.date = '';
+    state.assignments = {}; state.customTasks = [];
+    state.settings = { dymoEndpoint: '' };
+    state.filter = 'all'; state.whoFilter = 'all';
+    try { localStorage.removeItem('demenagement.settings'); } catch (e) {}
     document.getElementById('move-date').value = '';
     document.getElementById('dymo-endpoint').value = '';
     document.querySelectorAll('#cat-filters .cat-pill').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
     document.querySelectorAll('#who-chips .who-chip').forEach(b => b.classList.toggle('muted', b.dataset.who !== 'all'));
+    await saveToFirestore();
     renderChecklist(); renderBoxes(); renderContacts(); renderStats(); updateBadges();
     showToast('Tout a été réinitialisé');
   });
 
-  renderChecklist(); renderBoxes(); renderContacts(); renderStats(); updateBadges();
-  renderSearch();
+  renderContacts();
+  // Initial render with empty state — Firestore snapshot will populate it
+  renderChecklist(); renderBoxes(); renderStats(); updateBadges(); renderSearch();
 }
 
 if (document.readyState === 'loading') {
